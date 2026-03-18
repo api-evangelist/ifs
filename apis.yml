@@ -1,0 +1,18 @@
+aid: ifs
+url: https://raw.githubusercontent.com/api-evangelist/ifs/refs/heads/main/apis.yml
+apis:
+- aid: ifs:ifs-api
+  name: IFS Field Service Management API
+  tags:
+  - Field Service
+  - ERP
+  - Asset Management
+  - Energy
+  image: https://raw.githubusercontent.com/api-evangelist/ifs/refs/heads/main/image.png
+  humanURL: https://www.ifs.com/
+  baseURL: https://api.ifs.example.com
+  properties:
+  - url: https://www.ifs.com/
+    type: Documentation
+  description: >-
+    IFS provides enterprise software for field service management, asset management, and ERP. APIs enable work order management, scheduling optimization, parts inventory, and mobile workforce coordination for energy, manufacturing, and defense industries.
