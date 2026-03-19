@@ -1,0 +1,120 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api-evangelist.github.io/ifs/json-schema/ifs-work-order-schema.json",
+  "title": "IFS Work Order",
+  "description": "JSON Schema for an IFS Cloud maintenance work order (WO). Represents a maintenance task or repair job for an asset/equipment in IFS Enterprise Asset Management or Field Service Management.",
+  "type": "object",
+  "properties": {
+    "WoNo": {
+      "type": "integer",
+      "description": "Work order number (unique identifier within IFS)"
+    },
+    "Description": {
+      "type": "string",
+      "description": "Short description of the work to be performed"
+    },
+    "ContractId": {
+      "type": "string",
+      "description": "Site/contract identifier where the work is to be performed"
+    },
+    "MchCode": {
+      "type": "string",
+      "description": "Maintenance object (equipment/asset) code"
+    },
+    "MchName": {
+      "type": "string",
+      "description": "Maintenance object name"
+    },
+    "WoStatus": {
+      "type": "string",
+      "enum": ["Prepared", "Released", "Work Done", "Finished", "Cancelled"],
+      "description": "Current work order status"
+    },
+    "WoType": {
+      "type": "string",
+      "description": "Work order type code (e.g., PM for preventive maintenance, CM for corrective)"
+    },
+    "Priority": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 10,
+      "description": "Work order priority (1=highest, 10=lowest)"
+    },
+    "EarlyStart": {
+      "type": "string",
+      "format": "date",
+      "description": "Planned earliest start date"
+    },
+    "EarlyFinish": {
+      "type": "string",
+      "format": "date",
+      "description": "Planned earliest finish date"
+    },
+    "ActualStart": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Actual start date and time"
+    },
+    "ActualFinish": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Actual finish date and time"
+    },
+    "CostAmount": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Actual or estimated cost of the work order"
+    },
+    "OrgCode": {
+      "type": "string",
+      "description": "Maintenance organization responsible for the work"
+    },
+    "EmployeeId": {
+      "type": "string",
+      "description": "Employee assigned to the work order"
+    },
+    "Notes": {
+      "type": "string",
+      "description": "Additional notes or instructions"
+    },
+    "JobOperations": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/JobOperation" },
+      "description": "Operations (tasks) within the work order"
+    }
+  },
+  "required": ["WoNo", "Description", "ContractId"],
+  "$defs": {
+    "JobOperation": {
+      "type": "object",
+      "description": "An individual operation or task step within a work order",
+      "properties": {
+        "OperationNo": {
+          "type": "integer",
+          "description": "Sequential operation number within the work order"
+        },
+        "Description": {
+          "type": "string"
+        },
+        "PlannedHours": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Planned labor hours for the operation"
+        },
+        "ActualHours": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Actual labor hours reported"
+        },
+        "EmployeeId": {
+          "type": "string"
+        },
+        "Status": {
+          "type": "string",
+          "enum": ["Prepared", "Released", "Started", "Finished", "Cancelled"]
+        }
+      },
+      "required": ["OperationNo"]
+    }
+  }
+}

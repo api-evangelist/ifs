@@ -1,0 +1,507 @@
+openapi: 3.1.0
+info:
+  title: IFS Cloud ERP API
+  description: >-
+    IFS Cloud ERP REST API providing integration with financial management,
+    procurement, manufacturing, project management, and supply chain modules.
+    IFS Cloud exposes OData-compatible REST endpoints for accessing business
+    entities across energy, manufacturing, aerospace, and defense industry verticals.
+  version: 22.1.0
+  contact:
+    name: IFS Support
+    url: https://www.ifs.com/support/
+  license:
+    name: IFS License
+    url: https://www.ifs.com/
+externalDocs:
+  description: IFS Cloud Documentation
+  url: https://docs.ifs.com/
+
+servers:
+  - url: https://{tenant}.ifs.cloud/main/ifsapp/data
+    description: IFS Cloud REST API (OData endpoint)
+    variables:
+      tenant:
+        default: yourcompany
+        description: IFS Cloud tenant identifier
+
+security:
+  - OAuth2: []
+
+tags:
+  - name: Finance
+    description: General ledger, vouchers, and financial entities
+  - name: Procurement
+    description: Purchase orders and supplier management
+  - name: Work Orders
+    description: Maintenance work orders and job management
+  - name: Projects
+    description: Project management and cost tracking
+  - name: Inventory
+    description: Parts and inventory management
+
+paths:
+  /VOUCHER_API:
+    get:
+      operationId: listVouchers
+      summary: List accounting vouchers
+      description: Returns general ledger voucher records. Supports OData $filter, $select, $orderby, and $top/$skip for pagination.
+      tags: [Finance]
+      parameters:
+        - name: $filter
+          in: query
+          schema:
+            type: string
+          description: OData filter expression (e.g., "VoucherDate ge 2024-01-01 and AccountingYear eq '2024'")
+        - name: $select
+          in: query
+          schema:
+            type: string
+          description: Comma-separated list of fields to return
+        - name: $top
+          in: query
+          schema:
+            type: integer
+            default: 100
+            maximum: 1000
+        - name: $skip
+          in: query
+          schema:
+            type: integer
+            default: 0
+        - name: $orderby
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Voucher list returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VoucherCollection'
+
+  /VOUCHER_API(AccountingYear='{accountingYear}',VoucherType='{voucherType}',VoucherNo={voucherNo},Company='{company}'):
+    get:
+      operationId: getVoucher
+      summary: Get a specific voucher
+      description: Returns a single voucher by its composite key (accounting year, voucher type, voucher number, and company).
+      tags: [Finance]
+      parameters:
+        - name: accountingYear
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Accounting year (e.g., "2024")
+        - name: voucherType
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Voucher type code
+        - name: voucherNo
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Voucher number
+        - name: company
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Company code
+      responses:
+        '200':
+          description: Voucher returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Voucher'
+        '404':
+          description: Voucher not found
+
+  /PURCHASE_ORDER_API:
+    get:
+      operationId: listPurchaseOrders
+      summary: List purchase orders
+      description: Returns purchase orders with support for OData filtering by order date, supplier, status, and site.
+      tags: [Procurement]
+      parameters:
+        - name: $filter
+          in: query
+          schema:
+            type: string
+          description: OData filter (e.g., "OrderDate ge 2024-01-01 and OrderStatus eq 'Released'")
+        - name: $top
+          in: query
+          schema:
+            type: integer
+            default: 100
+        - name: $skip
+          in: query
+          schema:
+            type: integer
+            default: 0
+        - name: $select
+          in: query
+          schema:
+            type: string
+        - name: $expand
+          in: query
+          schema:
+            type: string
+          description: Navigation properties to expand (e.g., "PurchaseOrderLines")
+      responses:
+        '200':
+          description: Purchase orders returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PurchaseOrderCollection'
+
+  /PURCHASE_ORDER_API(OrderNo='{orderNo}'):
+    get:
+      operationId: getPurchaseOrder
+      summary: Get purchase order
+      description: Returns a specific purchase order by order number including lines, header data, and delivery schedule.
+      tags: [Procurement]
+      parameters:
+        - name: orderNo
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Purchase order number
+        - name: $expand
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Purchase order returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PurchaseOrder'
+        '404':
+          description: Purchase order not found
+
+  /WORK_ORDER_API:
+    get:
+      operationId: listWorkOrders
+      summary: List work orders
+      description: Returns IFS maintenance work orders (WOs) with filtering by status, site, maintenance organization, and object.
+      tags: [Work Orders]
+      parameters:
+        - name: $filter
+          in: query
+          schema:
+            type: string
+          description: OData filter (e.g., "WoStatus eq 'Released' and ContractId eq 'SITE1'")
+        - name: $top
+          in: query
+          schema:
+            type: integer
+            default: 100
+        - name: $skip
+          in: query
+          schema:
+            type: integer
+            default: 0
+      responses:
+        '200':
+          description: Work orders returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkOrderCollection'
+
+  /WORK_ORDER_API(WoNo={woNo}):
+    get:
+      operationId: getWorkOrder
+      summary: Get work order
+      description: Returns a specific maintenance work order by work order number.
+      tags: [Work Orders]
+      parameters:
+        - name: woNo
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Work order number
+      responses:
+        '200':
+          description: Work order returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkOrder'
+        '404':
+          description: Work order not found
+
+  /PART_CATALOG_API:
+    get:
+      operationId: listParts
+      summary: List parts from part catalog
+      description: Returns parts from the IFS part catalog with inventory balances and descriptions.
+      tags: [Inventory]
+      parameters:
+        - name: $filter
+          in: query
+          schema:
+            type: string
+        - name: $top
+          in: query
+          schema:
+            type: integer
+            default: 100
+        - name: $skip
+          in: query
+          schema:
+            type: integer
+            default: 0
+      responses:
+        '200':
+          description: Parts returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PartCollection'
+
+components:
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://login.ifs.cloud/oauth2/authorize
+          tokenUrl: https://login.ifs.cloud/oauth2/token
+          scopes:
+            ifs.read: Read IFS data
+            ifs.write: Write IFS data
+
+  schemas:
+    Voucher:
+      type: object
+      properties:
+        Company:
+          type: string
+          description: Company code
+        AccountingYear:
+          type: string
+        VoucherType:
+          type: string
+        VoucherNo:
+          type: integer
+        VoucherDate:
+          type: string
+          format: date
+        Description:
+          type: string
+        Function:
+          type: string
+        Amount:
+          type: number
+          format: double
+        CurrencyCode:
+          type: string
+        Objstate:
+          type: string
+          description: Voucher state (e.g., Preliminary, Approved, Confirmed)
+        UserGroup:
+          type: string
+        VoucherRows:
+          type: array
+          items:
+            $ref: '#/components/schemas/VoucherRow'
+
+    VoucherRow:
+      type: object
+      properties:
+        RowNo:
+          type: integer
+        Account:
+          type: string
+        CostCentre:
+          type: string
+        ProjectId:
+          type: string
+        Quantity:
+          type: number
+        Amount:
+          type: number
+          format: double
+        CurrencyAmount:
+          type: number
+          format: double
+        Text:
+          type: string
+        AccountingPeriod:
+          type: integer
+
+    VoucherCollection:
+      type: object
+      properties:
+        '@odata.context':
+          type: string
+        '@odata.count':
+          type: integer
+        value:
+          type: array
+          items:
+            $ref: '#/components/schemas/Voucher'
+
+    PurchaseOrder:
+      type: object
+      properties:
+        OrderNo:
+          type: string
+        Contract:
+          type: string
+          description: Site/contract code
+        VendorNo:
+          type: string
+        VendorName:
+          type: string
+        OrderDate:
+          type: string
+          format: date
+        WantedDeliveryDate:
+          type: string
+          format: date
+        OrderStatus:
+          type: string
+          enum: [Planned, Released, Closed, Cancelled]
+        TotalOrderAmount:
+          type: number
+          format: double
+        CurrencyCode:
+          type: string
+        PurchaseOrderLines:
+          type: array
+          items:
+            $ref: '#/components/schemas/PurchaseOrderLine'
+
+    PurchaseOrderLine:
+      type: object
+      properties:
+        LineNo:
+          type: integer
+        PartNo:
+          type: string
+        Description:
+          type: string
+        OrderedQty:
+          type: number
+        ReceivedQty:
+          type: number
+        RemainingQty:
+          type: number
+        BuyUnitPrice:
+          type: number
+          format: double
+        LineTotal:
+          type: number
+          format: double
+
+    PurchaseOrderCollection:
+      type: object
+      properties:
+        '@odata.context':
+          type: string
+        '@odata.count':
+          type: integer
+        value:
+          type: array
+          items:
+            $ref: '#/components/schemas/PurchaseOrder'
+
+    WorkOrder:
+      type: object
+      properties:
+        WoNo:
+          type: integer
+        Description:
+          type: string
+        ContractId:
+          type: string
+          description: Site/contract code
+        MchCode:
+          type: string
+          description: Maintenance object (equipment) code
+        WoStatus:
+          type: string
+          enum: [Prepared, Released, Work Done, Finished, Cancelled]
+        WoType:
+          type: string
+          description: Work order type
+        Priority:
+          type: integer
+          minimum: 1
+          maximum: 10
+        EarlyStart:
+          type: string
+          format: date
+        EarlyFinish:
+          type: string
+          format: date
+        ActualStart:
+          type: string
+          format: date-time
+        ActualFinish:
+          type: string
+          format: date-time
+        CostAmount:
+          type: number
+          format: double
+        OrgCode:
+          type: string
+          description: Maintenance organization code
+        EmployeeId:
+          type: string
+
+    WorkOrderCollection:
+      type: object
+      properties:
+        '@odata.context':
+          type: string
+        '@odata.count':
+          type: integer
+        value:
+          type: array
+          items:
+            $ref: '#/components/schemas/WorkOrder'
+
+    Part:
+      type: object
+      properties:
+        PartNo:
+          type: string
+        Description:
+          type: string
+        UnitMeas:
+          type: string
+          description: Unit of measure code
+        PartType:
+          type: string
+          enum: [PURCHASED, MANUFACTURED, NOT_APPLICABLE]
+        DangerousGoodsClass:
+          type: string
+        NetWeight:
+          type: number
+        GrossWeight:
+          type: number
+
+    PartCollection:
+      type: object
+      properties:
+        '@odata.context':
+          type: string
+        '@odata.count':
+          type: integer
+        value:
+          type: array
+          items:
+            $ref: '#/components/schemas/Part'
