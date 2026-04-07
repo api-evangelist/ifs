@@ -1,17 +1,15 @@
 aid: ifs
-url: 
-  https://raw.githubusercontent.com/api-evangelist/ifs/refs/heads/main/apis.yml
+url: https://raw.githubusercontent.com/api-evangelist/ifs/refs/heads/main/apis.yml
 apis:
   - aid: ifs:ifs-cloud-erp-api
     name: IFS Cloud ERP API
     tags:
+      - Cloud
       - ERP
+      - Finance
       - Manufacturing
       - Supply Chain
-      - Finance
-      - Cloud
-    image: 
-      https://raw.githubusercontent.com/api-evangelist/ifs/refs/heads/main/image.png
+    image: https://raw.githubusercontent.com/api-evangelist/ifs/refs/heads/main/image.png
     humanURL: https://www.ifs.com/
     baseURL: https://api.ifs.com
     properties:
@@ -27,13 +25,12 @@ apis:
   - aid: ifs:ifs-field-service-management-api
     name: IFS Field Service Management API
     tags:
-      - Field Service
       - Asset Management
-      - Work Order
-      - Scheduling
+      - Field Service
       - Mobile
-    image: 
-      https://raw.githubusercontent.com/api-evangelist/ifs/refs/heads/main/image.png
+      - Scheduling
+      - Work Order
+    image: https://raw.githubusercontent.com/api-evangelist/ifs/refs/heads/main/image.png
     humanURL: https://www.ifs.com/
     baseURL: https://api.ifs.com
     properties:
@@ -49,11 +46,10 @@ apis:
     tags:
       - Asset Management
       - EAM
-      - Maintenance
       - Energy
+      - Maintenance
       - Manufacturing
-    image: 
-      https://raw.githubusercontent.com/api-evangelist/ifs/refs/heads/main/image.png
+    image: https://raw.githubusercontent.com/api-evangelist/ifs/refs/heads/main/image.png
     humanURL: https://www.ifs.com/
     baseURL: https://api.ifs.com
     properties:
@@ -67,12 +63,11 @@ apis:
   - aid: ifs:ifs-enterprise-service-management-api
     name: IFS Enterprise Service Management API
     tags:
-      - Service Management
-      - ITSM
-      - Helpdesk
       - Cloud
-    image: 
-      https://raw.githubusercontent.com/api-evangelist/ifs/refs/heads/main/image.png
+      - Helpdesk
+      - ITSM
+      - Service Management
+    image: https://raw.githubusercontent.com/api-evangelist/ifs/refs/heads/main/image.png
     humanURL: https://www.ifs.com/
     baseURL: https://api.ifs.com
     properties:
@@ -92,8 +87,7 @@ common:
     APIs enable integration with IFS Cloud across manufacturing, energy, aerospace,
     defense, and service industries. IFS is headquartered in Linköping, Sweden with
     operations in over 90 countries.
-  image: 
-    https://raw.githubusercontent.com/api-evangelist/ifs/refs/heads/main/image.png
+  image: https://raw.githubusercontent.com/api-evangelist/ifs/refs/heads/main/image.png
   tags:
     - ERP
     - Field Service

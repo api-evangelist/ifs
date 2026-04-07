@@ -31,15 +31,13 @@ security:
 tags:
   - name: Finance
     description: General ledger, vouchers, and financial entities
+  - name: Inventory
+    description: Parts and inventory management
+
   - name: Procurement
     description: Purchase orders and supplier management
   - name: Work Orders
     description: Maintenance work orders and job management
-  - name: Projects
-    description: Project management and cost tracking
-  - name: Inventory
-    description: Parts and inventory management
-
 paths:
   /VOUCHER_API:
     get:
