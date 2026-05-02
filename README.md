@@ -1,10 +1,21 @@
-# Unknown (ifs)
+# IFS (ifs)
+IFS is a global enterprise software company providing cloud ERP, enterprise asset management, field service management, and enterprise service management platforms. APIs enable integration with IFS Cloud across manufacturing, energy, aerospace, defense, and service industries. IFS is headquartered in Linköping, Sweden with operations in over 90 countries.
 
 **URL:** [Visit APIs.json URL](https://raw.githubusercontent.com/api-evangelist/ifs/refs/heads/main/apis.yml)
 
+## Scope
+
+- **Type:** Index
+- **Position:** Consuming
+- **Access:** 3rd-Party
+
+## Tags:
+
+ - Asset Management, Cloud, Energy, ERP, Field Service, Manufacturing
+
 ## Timestamps
 
-- **Modified:** 2026-03-18 
+- **Modified:** 2026-04-28
 
 ## APIs
 
@@ -13,10 +24,11 @@ IFS Cloud ERP provides REST APIs for enterprise resource planning covering finan
 
 **Human URL:** [https://www.ifs.com/](https://www.ifs.com/)
 
+**Base URL:** https://api.ifs.com
 
 #### Tags:
 
- - ERP, Manufacturing, Supply Chain, Finance, Cloud
+ - Cloud, ERP, Finance, Manufacturing, Supply Chain
 
 #### Properties
 
@@ -28,10 +40,11 @@ IFS Field Service Management APIs enable work order management, scheduling optim
 
 **Human URL:** [https://www.ifs.com/](https://www.ifs.com/)
 
+**Base URL:** https://api.ifs.com
 
 #### Tags:
 
- - Field Service, Asset Management, Work Order, Scheduling, Mobile
+ - Asset Management, Field Service, Mobile, Scheduling, Work Order
 
 #### Properties
 
@@ -42,10 +55,11 @@ IFS Enterprise Asset Management APIs provide integration with asset lifecycle ma
 
 **Human URL:** [https://www.ifs.com/](https://www.ifs.com/)
 
+**Base URL:** https://api.ifs.com
 
 #### Tags:
 
- - Asset Management, EAM, Maintenance, Energy, Manufacturing
+ - Asset Management, EAM, Energy, Maintenance, Manufacturing
 
 #### Properties
 
@@ -56,13 +70,28 @@ IFS Enterprise Service Management APIs enable IT service management, service cat
 
 **Human URL:** [https://www.ifs.com/](https://www.ifs.com/)
 
+**Base URL:** https://api.ifs.com
 
 #### Tags:
 
- - Service Management, ITSM, Helpdesk, Cloud
+ - Cloud, Helpdesk, ITSM, Service Management
 
 #### Properties
 
 - [Documentation](https://www.ifs.com/)
 
 ## Common Properties
+
+- [Portal](https://www.ifs.com/)
+- [Documentation](https://www.ifs.com/)
+- [Website](https://www.ifs.com/)
+- [Support](https://www.ifs.com/)
+- [OpenAPI](openapi/ifs-cloud-erp-openapi.yml)
+- [JSONSchema](json-schema/ifs-work-order-schema.json)
+- [JSONLDContext](json-ld/ifs-context.jsonld)
+
+## Maintainers
+
+**FN:** Kin Lane
+
+**Email:** kin@apievangelist.com
