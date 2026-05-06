@@ -1,0 +1,468 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: IFS Cloud ERP API
+  description: IFS Cloud ERP REST API providing integration with financial management, procurement, manufacturing, project
+    management, and supply chain modules. IFS Cloud exposes OData-compatible REST endpoints for accessing business entities
+    across energy, manufacturing, aerospace, and defense industry verticals.
+  tags:
+  - Ifs
+  - API
+  created: '2026-05-06'
+  modified: '2026-05-06'
+capability:
+  consumes:
+  - type: http
+    namespace: ifs
+    baseUri: https://yourcompany.ifs.cloud/main/ifsapp/data
+    description: IFS Cloud ERP API HTTP API.
+    authentication:
+      type: bearer
+      token: '{{IFS_TOKEN}}'
+    resources:
+    - name: voucher-api
+      path: /VOUCHER_API
+      operations:
+      - name: listvouchers
+        method: GET
+        description: List accounting vouchers
+        inputParameters:
+        - name: $filter
+          in: query
+          type: string
+          description: OData filter expression (e.g., "VoucherDate ge 2024-01-01 and AccountingYear eq '2024'")
+        - name: $select
+          in: query
+          type: string
+          description: Comma-separated list of fields to return
+        - name: $top
+          in: query
+          type: integer
+        - name: $skip
+          in: query
+          type: integer
+        - name: $orderby
+          in: query
+          type: string
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: voucher-api-accountingyear-accountingyear-vouche
+      path: /VOUCHER_API(AccountingYear='{accountingYear}',VoucherType='{voucherType}',VoucherNo={voucherNo},Company='{company}')
+      operations:
+      - name: getvoucher
+        method: GET
+        description: Get a specific voucher
+        inputParameters:
+        - name: accountingYear
+          in: path
+          type: string
+          required: true
+          description: Accounting year (e.g., "2024")
+        - name: voucherType
+          in: path
+          type: string
+          required: true
+          description: Voucher type code
+        - name: voucherNo
+          in: path
+          type: integer
+          required: true
+          description: Voucher number
+        - name: company
+          in: path
+          type: string
+          required: true
+          description: Company code
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: purchase-order-api
+      path: /PURCHASE_ORDER_API
+      operations:
+      - name: listpurchaseorders
+        method: GET
+        description: List purchase orders
+        inputParameters:
+        - name: $filter
+          in: query
+          type: string
+          description: OData filter (e.g., "OrderDate ge 2024-01-01 and OrderStatus eq 'Released'")
+        - name: $top
+          in: query
+          type: integer
+        - name: $skip
+          in: query
+          type: integer
+        - name: $select
+          in: query
+          type: string
+        - name: $expand
+          in: query
+          type: string
+          description: Navigation properties to expand (e.g., "PurchaseOrderLines")
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: purchase-order-api-orderno-orderno
+      path: /PURCHASE_ORDER_API(OrderNo='{orderNo}')
+      operations:
+      - name: getpurchaseorder
+        method: GET
+        description: Get purchase order
+        inputParameters:
+        - name: orderNo
+          in: path
+          type: string
+          required: true
+          description: Purchase order number
+        - name: $expand
+          in: query
+          type: string
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: work-order-api
+      path: /WORK_ORDER_API
+      operations:
+      - name: listworkorders
+        method: GET
+        description: List work orders
+        inputParameters:
+        - name: $filter
+          in: query
+          type: string
+          description: OData filter (e.g., "WoStatus eq 'Released' and ContractId eq 'SITE1'")
+        - name: $top
+          in: query
+          type: integer
+        - name: $skip
+          in: query
+          type: integer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: work-order-api-wono-wono
+      path: /WORK_ORDER_API(WoNo={woNo})
+      operations:
+      - name: getworkorder
+        method: GET
+        description: Get work order
+        inputParameters:
+        - name: woNo
+          in: path
+          type: integer
+          required: true
+          description: Work order number
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: part-catalog-api
+      path: /PART_CATALOG_API
+      operations:
+      - name: listparts
+        method: GET
+        description: List parts from part catalog
+        inputParameters:
+        - name: $filter
+          in: query
+          type: string
+        - name: $top
+          in: query
+          type: integer
+        - name: $skip
+          in: query
+          type: integer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    port: 8080
+    namespace: ifs-rest
+    description: REST adapter for IFS Cloud ERP API.
+    resources:
+    - path: /VOUCHER_API
+      name: listvouchers
+      operations:
+      - method: GET
+        name: listvouchers
+        description: List accounting vouchers
+        call: ifs.listvouchers
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /VOUCHER_API(AccountingYear='{accountingYear}',VoucherType='{voucherType}',VoucherNo={voucherNo},Company='{company}')
+      name: getvoucher
+      operations:
+      - method: GET
+        name: getvoucher
+        description: Get a specific voucher
+        call: ifs.getvoucher
+        with:
+          accountingYear: rest.accountingYear
+          voucherType: rest.voucherType
+          voucherNo: rest.voucherNo
+          company: rest.company
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /PURCHASE_ORDER_API
+      name: listpurchaseorders
+      operations:
+      - method: GET
+        name: listpurchaseorders
+        description: List purchase orders
+        call: ifs.listpurchaseorders
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /PURCHASE_ORDER_API(OrderNo='{orderNo}')
+      name: getpurchaseorder
+      operations:
+      - method: GET
+        name: getpurchaseorder
+        description: Get purchase order
+        call: ifs.getpurchaseorder
+        with:
+          orderNo: rest.orderNo
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /WORK_ORDER_API
+      name: listworkorders
+      operations:
+      - method: GET
+        name: listworkorders
+        description: List work orders
+        call: ifs.listworkorders
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /WORK_ORDER_API(WoNo={woNo})
+      name: getworkorder
+      operations:
+      - method: GET
+        name: getworkorder
+        description: Get work order
+        call: ifs.getworkorder
+        with:
+          woNo: rest.woNo
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /PART_CATALOG_API
+      name: listparts
+      operations:
+      - method: GET
+        name: listparts
+        description: List parts from part catalog
+        call: ifs.listparts
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    port: 9090
+    namespace: ifs-mcp
+    transport: http
+    description: MCP adapter for IFS Cloud ERP API for AI agent use.
+    tools:
+    - name: listvouchers
+      description: List accounting vouchers
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: ifs.listvouchers
+      with:
+        $filter: tools.$filter
+        $select: tools.$select
+        $top: tools.$top
+        $skip: tools.$skip
+        $orderby: tools.$orderby
+      inputParameters:
+      - name: $filter
+        type: string
+        description: OData filter expression (e.g., "VoucherDate ge 2024-01-01 and AccountingYear eq '2024'")
+      - name: $select
+        type: string
+        description: Comma-separated list of fields to return
+      - name: $top
+        type: integer
+        description: $top
+      - name: $skip
+        type: integer
+        description: $skip
+      - name: $orderby
+        type: string
+        description: $orderby
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getvoucher
+      description: Get a specific voucher
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: ifs.getvoucher
+      with:
+        accountingYear: tools.accountingYear
+        voucherType: tools.voucherType
+        voucherNo: tools.voucherNo
+        company: tools.company
+      inputParameters:
+      - name: accountingYear
+        type: string
+        description: Accounting year (e.g., "2024")
+        required: true
+      - name: voucherType
+        type: string
+        description: Voucher type code
+        required: true
+      - name: voucherNo
+        type: integer
+        description: Voucher number
+        required: true
+      - name: company
+        type: string
+        description: Company code
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listpurchaseorders
+      description: List purchase orders
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: ifs.listpurchaseorders
+      with:
+        $filter: tools.$filter
+        $top: tools.$top
+        $skip: tools.$skip
+        $select: tools.$select
+        $expand: tools.$expand
+      inputParameters:
+      - name: $filter
+        type: string
+        description: OData filter (e.g., "OrderDate ge 2024-01-01 and OrderStatus eq 'Released'")
+      - name: $top
+        type: integer
+        description: $top
+      - name: $skip
+        type: integer
+        description: $skip
+      - name: $select
+        type: string
+        description: $select
+      - name: $expand
+        type: string
+        description: Navigation properties to expand (e.g., "PurchaseOrderLines")
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getpurchaseorder
+      description: Get purchase order
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: ifs.getpurchaseorder
+      with:
+        orderNo: tools.orderNo
+        $expand: tools.$expand
+      inputParameters:
+      - name: orderNo
+        type: string
+        description: Purchase order number
+        required: true
+      - name: $expand
+        type: string
+        description: $expand
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listworkorders
+      description: List work orders
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: ifs.listworkorders
+      with:
+        $filter: tools.$filter
+        $top: tools.$top
+        $skip: tools.$skip
+      inputParameters:
+      - name: $filter
+        type: string
+        description: OData filter (e.g., "WoStatus eq 'Released' and ContractId eq 'SITE1'")
+      - name: $top
+        type: integer
+        description: $top
+      - name: $skip
+        type: integer
+        description: $skip
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getworkorder
+      description: Get work order
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: ifs.getworkorder
+      with:
+        woNo: tools.woNo
+      inputParameters:
+      - name: woNo
+        type: integer
+        description: Work order number
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listparts
+      description: List parts from part catalog
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: ifs.listparts
+      with:
+        $filter: tools.$filter
+        $top: tools.$top
+        $skip: tools.$skip
+      inputParameters:
+      - name: $filter
+        type: string
+        description: $filter
+      - name: $top
+        type: integer
+        description: $top
+      - name: $skip
+        type: integer
+        description: $skip
+      outputParameters:
+      - type: object
+        mapping: $.
+binds:
+- namespace: env
+  keys:
+    IFS_TOKEN: IFS_TOKEN
