@@ -1,0 +1,163 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: IFS Cloud ERP API — Finance
+  description: 'IFS Cloud ERP API — Finance. 2 operations. Lead operation: List accounting vouchers. Self-contained Naftiko
+    capability covering one Ifs business surface.'
+  tags:
+  - Ifs
+  - Finance
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    IFS_API_KEY: IFS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: cloud-erp-finance
+    baseUri: https://{tenant}.ifs.cloud/main/ifsapp/data
+    description: IFS Cloud ERP API — Finance business capability. Self-contained, no shared references.
+    resources:
+    - name: VOUCHER_API
+      path: /VOUCHER_API
+      operations:
+      - name: listvouchers
+        method: GET
+        description: List accounting vouchers
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: $filter
+          in: query
+          type: string
+          description: OData filter expression (e.g., "VoucherDate ge 2024-01-01 and AccountingYear eq '2024'")
+        - name: $select
+          in: query
+          type: string
+          description: Comma-separated list of fields to return
+        - name: $top
+          in: query
+          type: integer
+        - name: $skip
+          in: query
+          type: integer
+        - name: $orderby
+          in: query
+          type: string
+    - name: VOUCHER_API(AccountingYear='{accountingYear}',VoucherType='{voucherType}',Vouche
+      path: /VOUCHER_API(AccountingYear='{accountingYear}',VoucherType='{voucherType}',VoucherNo={voucherNo},Company='{company}')
+      operations:
+      - name: getvoucher
+        method: GET
+        description: Get a specific voucher
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: accountingYear
+          in: path
+          type: string
+          description: Accounting year (e.g., "2024")
+          required: true
+        - name: voucherType
+          in: path
+          type: string
+          description: Voucher type code
+          required: true
+        - name: voucherNo
+          in: path
+          type: integer
+          description: Voucher number
+          required: true
+        - name: company
+          in: path
+          type: string
+          description: Company code
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.IFS_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: cloud-erp-finance-rest
+    port: 8080
+    description: REST adapter for IFS Cloud ERP API — Finance. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/voucher-api
+      name: voucher-api
+      description: REST surface for VOUCHER_API.
+      operations:
+      - method: GET
+        name: listvouchers
+        description: List accounting vouchers
+        call: cloud-erp-finance.listvouchers
+        with:
+          $filter: rest.$filter
+          $select: rest.$select
+          $top: rest.$top
+          $skip: rest.$skip
+          $orderby: rest.$orderby
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/voucher-api-accountingyear-accountingyear-vouchertype-vouchertype-voucherno-voucherno-company-company
+      name: voucher-api-accountingyear-accountingyear-vouchertype-vouchertype-vouche
+      description: REST surface for VOUCHER_API(AccountingYear='{accountingYear}',VoucherType='{voucherType}',Vouche.
+      operations:
+      - method: GET
+        name: getvoucher
+        description: Get a specific voucher
+        call: cloud-erp-finance.getvoucher
+        with:
+          accountingYear: rest.accountingYear
+          voucherType: rest.voucherType
+          voucherNo: rest.voucherNo
+          company: rest.company
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: cloud-erp-finance-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for IFS Cloud ERP API — Finance. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: list-accounting-vouchers
+      description: List accounting vouchers
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-erp-finance.listvouchers
+      with:
+        $filter: tools.$filter
+        $select: tools.$select
+        $top: tools.$top
+        $skip: tools.$skip
+        $orderby: tools.$orderby
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-specific-voucher
+      description: Get a specific voucher
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-erp-finance.getvoucher
+      with:
+        accountingYear: tools.accountingYear
+        voucherType: tools.voucherType
+        voucherNo: tools.voucherNo
+        company: tools.company
+      outputParameters:
+      - type: object
+        mapping: $.

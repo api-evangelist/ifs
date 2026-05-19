@@ -79,6 +79,8 @@ apis:
       service organizations using the IFS Cloud platform.
 
 common:
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/ifs
   aid: ifs
   name: IFS
   description: >-
