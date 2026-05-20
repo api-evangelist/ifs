@@ -81,37 +81,37 @@ apis:
 common:
   - type: LinkedIn
     url: https://www.linkedin.com/company/ifs
-  aid: ifs
-  name: IFS
-  description: >-
-    IFS is a global enterprise software company providing cloud ERP, enterprise asset
-    management, field service management, and enterprise service management platforms.
-    APIs enable integration with IFS Cloud across manufacturing, energy, aerospace,
-    defense, and service industries. IFS is headquartered in Linköping, Sweden with
-    operations in over 90 countries.
-  image: https://raw.githubusercontent.com/api-evangelist/ifs/refs/heads/main/image.png
-  tags:
-    - ERP
-    - Field Service
-    - Asset Management
-    - Manufacturing
-    - Energy
-    - Cloud
-  properties:
-    - url: https://www.ifs.com/
-      type: Portal
-    - url: https://www.ifs.com/
-      type: Documentation
-    - url: https://www.ifs.com/
-      type: Website
-    - url: https://www.ifs.com/
-      type: Support
-    - url: openapi/ifs-cloud-erp-openapi.yml
-      type: OpenAPI
-    - url: json-schema/ifs-work-order-schema.json
-      type: JSONSchema
-    - url: json-ld/ifs-context.jsonld
-      type: JSONLDContext
+aid: ifs
+name: IFS
+description: >-
+  IFS is a global enterprise software company providing cloud ERP, enterprise asset
+  management, field service management, and enterprise service management platforms.
+  APIs enable integration with IFS Cloud across manufacturing, energy, aerospace,
+  defense, and service industries. IFS is headquartered in Linköping, Sweden with
+  operations in over 90 countries.
+image: https://raw.githubusercontent.com/api-evangelist/ifs/refs/heads/main/image.png
+tags:
+  - ERP
+  - Field Service
+  - Asset Management
+  - Manufacturing
+  - Energy
+  - Cloud
+properties:
+  - url: https://www.ifs.com/
+    type: Portal
+  - url: https://www.ifs.com/
+    type: Documentation
+  - url: https://www.ifs.com/
+    type: Website
+  - url: https://www.ifs.com/
+    type: Support
+  - url: openapi/ifs-cloud-erp-openapi.yml
+    type: OpenAPI
+  - url: json-schema/ifs-work-order-schema.json
+    type: JSONSchema
+  - url: json-ld/ifs-context.jsonld
+    type: JSONLDContext
 maintainer:
   name: Kin Lane
   email: kin@apievangelist.com
