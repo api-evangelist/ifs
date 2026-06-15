@@ -1,0 +1,271 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "IFS Cloud ERP API",
+    "version": "22.1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://login.ifs.cloud/oauth2/authorize",
+      "accessTokenUrl": "https://login.ifs.cloud/oauth2/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Finance",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List accounting vouchers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}.ifs.cloud/main/ifsapp/data/VOUCHER_API",
+            "params": [
+              {
+                "name": "$filter",
+                "value": "",
+                "type": "query",
+                "description": "OData filter expression (e.g., \"VoucherDate ge 2024-01-01 and AccountingYear eq '2024'\")"
+              },
+              {
+                "name": "$select",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to return"
+              },
+              {
+                "name": "$top",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "$skip",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "$orderby",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns general ledger voucher records. Supports OData $filter, $select, $orderby, and $top/$skip for pagination."
+        },
+        {
+          "info": {
+            "name": "Get a specific voucher",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}.ifs.cloud/main/ifsapp/data/VOUCHER_API(AccountingYear=':accountingYear',VoucherType=':voucherType',VoucherNo=:voucherNo,Company=':company')",
+            "params": [
+              {
+                "name": "accountingYear",
+                "value": "",
+                "type": "path",
+                "description": "Accounting year (e.g., \"2024\")"
+              },
+              {
+                "name": "voucherType",
+                "value": "",
+                "type": "path",
+                "description": "Voucher type code"
+              },
+              {
+                "name": "voucherNo",
+                "value": "",
+                "type": "path",
+                "description": "Voucher number"
+              },
+              {
+                "name": "company",
+                "value": "",
+                "type": "path",
+                "description": "Company code"
+              }
+            ]
+          },
+          "docs": "Returns a single voucher by its composite key (accounting year, voucher type, voucher number, and company)."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Procurement",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List purchase orders",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}.ifs.cloud/main/ifsapp/data/PURCHASE_ORDER_API",
+            "params": [
+              {
+                "name": "$filter",
+                "value": "",
+                "type": "query",
+                "description": "OData filter (e.g., \"OrderDate ge 2024-01-01 and OrderStatus eq 'Released'\")"
+              },
+              {
+                "name": "$top",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "$skip",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "$select",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "$expand",
+                "value": "",
+                "type": "query",
+                "description": "Navigation properties to expand (e.g., \"PurchaseOrderLines\")"
+              }
+            ]
+          },
+          "docs": "Returns purchase orders with support for OData filtering by order date, supplier, status, and site."
+        },
+        {
+          "info": {
+            "name": "Get purchase order",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}.ifs.cloud/main/ifsapp/data/PURCHASE_ORDER_API(OrderNo=':orderNo')",
+            "params": [
+              {
+                "name": "orderNo",
+                "value": "",
+                "type": "path",
+                "description": "Purchase order number"
+              },
+              {
+                "name": "$expand",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns a specific purchase order by order number including lines, header data, and delivery schedule."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Work Orders",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List work orders",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}.ifs.cloud/main/ifsapp/data/WORK_ORDER_API",
+            "params": [
+              {
+                "name": "$filter",
+                "value": "",
+                "type": "query",
+                "description": "OData filter (e.g., \"WoStatus eq 'Released' and ContractId eq 'SITE1'\")"
+              },
+              {
+                "name": "$top",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "$skip",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns IFS maintenance work orders (WOs) with filtering by status, site, maintenance organization, and object."
+        },
+        {
+          "info": {
+            "name": "Get work order",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}.ifs.cloud/main/ifsapp/data/WORK_ORDER_API(WoNo=:woNo)",
+            "params": [
+              {
+                "name": "woNo",
+                "value": "",
+                "type": "path",
+                "description": "Work order number"
+              }
+            ]
+          },
+          "docs": "Returns a specific maintenance work order by work order number."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Inventory",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List parts from part catalog",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}.ifs.cloud/main/ifsapp/data/PART_CATALOG_API",
+            "params": [
+              {
+                "name": "$filter",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "$top",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "$skip",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns parts from the IFS part catalog with inventory balances and descriptions."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
