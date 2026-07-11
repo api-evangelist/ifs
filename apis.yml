@@ -79,8 +79,12 @@ apis:
     service organizations using the IFS Cloud platform.
 
 common:
+- type: OAuthScopes
+  url: scopes/ifs-scopes.yml
 - type: LinkedIn
   url: https://www.linkedin.com/company/ifs
+- url: https://blog.ifs.com/feed/
+  type: Blog
 name: IFS
 description: >-
   IFS is a global enterprise software company providing cloud ERP, enterprise asset
