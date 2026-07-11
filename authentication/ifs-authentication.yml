@@ -1,0 +1,18 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/ifs-cloud-erp-openapi.yml
+summary:
+  types:
+  - oauth2
+  oauth2_flows:
+  - authorizationCode
+schemes:
+- name: OAuth2
+  type: oauth2
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://login.ifs.cloud/oauth2/authorize
+    tokenUrl: https://login.ifs.cloud/oauth2/token
+    scopes: 2
+  sources:
+  - openapi/ifs-cloud-erp-openapi.yml

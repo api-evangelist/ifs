@@ -79,6 +79,10 @@ apis:
     service organizations using the IFS Cloud platform.
 
 common:
+- type: DomainSecurity
+  url: security/ifs-domain-security.yml
+- type: Authentication
+  url: authentication/ifs-authentication.yml
 - type: OAuthScopes
   url: scopes/ifs-scopes.yml
 - type: LinkedIn
