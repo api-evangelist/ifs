@@ -79,6 +79,8 @@ apis:
     service organizations using the IFS Cloud platform.
 
 common:
+- type: AgenticAccess
+  url: agentic-access/ifs-agentic-access.yml
 - type: DomainSecurity
   url: security/ifs-domain-security.yml
 - type: Authentication
