@@ -1,0 +1,187 @@
+openapi: 3.1.0
+info:
+  title: IFS Cloud ERP Finance API
+  description: IFS Cloud ERP REST API providing integration with financial management, procurement, manufacturing, project management, and supply chain modules. IFS Cloud exposes OData-compatible REST endpoints for accessing business entities across energy, manufacturing, aerospace, and defense industry verticals.
+  version: 22.1.0
+  contact:
+    name: IFS Support
+    url: https://www.ifs.com/support/
+  license:
+    name: IFS License
+    url: https://www.ifs.com/
+servers:
+- url: https://{tenant}.ifs.cloud/main/ifsapp/data
+  description: IFS Cloud REST API (OData endpoint)
+  variables:
+    tenant:
+      default: yourcompany
+      description: IFS Cloud tenant identifier
+security:
+- OAuth2: []
+tags:
+- name: Finance
+  description: General ledger, vouchers, and financial entities
+paths:
+  /VOUCHER_API:
+    get:
+      operationId: listVouchers
+      summary: List accounting vouchers
+      description: Returns general ledger voucher records. Supports OData $filter, $select, $orderby, and $top/$skip for pagination.
+      tags:
+      - Finance
+      parameters:
+      - name: $filter
+        in: query
+        schema:
+          type: string
+        description: OData filter expression (e.g., "VoucherDate ge 2024-01-01 and AccountingYear eq '2024'")
+      - name: $select
+        in: query
+        schema:
+          type: string
+        description: Comma-separated list of fields to return
+      - name: $top
+        in: query
+        schema:
+          type: integer
+          default: 100
+          maximum: 1000
+      - name: $skip
+        in: query
+        schema:
+          type: integer
+          default: 0
+      - name: $orderby
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Voucher list returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VoucherCollection'
+  /VOUCHER_API(AccountingYear='{accountingYear}',VoucherType='{voucherType}',VoucherNo={voucherNo},Company='{company}'):
+    get:
+      operationId: getVoucher
+      summary: Get a specific voucher
+      description: Returns a single voucher by its composite key (accounting year, voucher type, voucher number, and company).
+      tags:
+      - Finance
+      parameters:
+      - name: accountingYear
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Accounting year (e.g., "2024")
+      - name: voucherType
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Voucher type code
+      - name: voucherNo
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: Voucher number
+      - name: company
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Company code
+      responses:
+        '200':
+          description: Voucher returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Voucher'
+        '404':
+          description: Voucher not found
+components:
+  schemas:
+    VoucherCollection:
+      type: object
+      properties:
+        '@odata.context':
+          type: string
+        '@odata.count':
+          type: integer
+        value:
+          type: array
+          items:
+            $ref: '#/components/schemas/Voucher'
+    VoucherRow:
+      type: object
+      properties:
+        RowNo:
+          type: integer
+        Account:
+          type: string
+        CostCentre:
+          type: string
+        ProjectId:
+          type: string
+        Quantity:
+          type: number
+        Amount:
+          type: number
+          format: double
+        CurrencyAmount:
+          type: number
+          format: double
+        Text:
+          type: string
+        AccountingPeriod:
+          type: integer
+    Voucher:
+      type: object
+      properties:
+        Company:
+          type: string
+          description: Company code
+        AccountingYear:
+          type: string
+        VoucherType:
+          type: string
+        VoucherNo:
+          type: integer
+        VoucherDate:
+          type: string
+          format: date
+        Description:
+          type: string
+        Function:
+          type: string
+        Amount:
+          type: number
+          format: double
+        CurrencyCode:
+          type: string
+        Objstate:
+          type: string
+          description: Voucher state (e.g., Preliminary, Approved, Confirmed)
+        UserGroup:
+          type: string
+        VoucherRows:
+          type: array
+          items:
+            $ref: '#/components/schemas/VoucherRow'
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://login.ifs.cloud/oauth2/authorize
+          tokenUrl: https://login.ifs.cloud/oauth2/token
+          scopes:
+            ifs.read: Read IFS data
+            ifs.write: Write IFS data
+externalDocs:
+  description: IFS Cloud Documentation
+  url: https://docs.ifs.com/

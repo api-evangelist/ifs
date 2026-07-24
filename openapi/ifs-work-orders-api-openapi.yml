@@ -1,0 +1,151 @@
+openapi: 3.1.0
+info:
+  title: IFS Cloud ERP Finance Work Orders API
+  description: IFS Cloud ERP REST API providing integration with financial management, procurement, manufacturing, project management, and supply chain modules. IFS Cloud exposes OData-compatible REST endpoints for accessing business entities across energy, manufacturing, aerospace, and defense industry verticals.
+  version: 22.1.0
+  contact:
+    name: IFS Support
+    url: https://www.ifs.com/support/
+  license:
+    name: IFS License
+    url: https://www.ifs.com/
+servers:
+- url: https://{tenant}.ifs.cloud/main/ifsapp/data
+  description: IFS Cloud REST API (OData endpoint)
+  variables:
+    tenant:
+      default: yourcompany
+      description: IFS Cloud tenant identifier
+security:
+- OAuth2: []
+tags:
+- name: Work Orders
+  description: Maintenance work orders and job management
+paths:
+  /WORK_ORDER_API:
+    get:
+      operationId: listWorkOrders
+      summary: List work orders
+      description: Returns IFS maintenance work orders (WOs) with filtering by status, site, maintenance organization, and object.
+      tags:
+      - Work Orders
+      parameters:
+      - name: $filter
+        in: query
+        schema:
+          type: string
+        description: OData filter (e.g., "WoStatus eq 'Released' and ContractId eq 'SITE1'")
+      - name: $top
+        in: query
+        schema:
+          type: integer
+          default: 100
+      - name: $skip
+        in: query
+        schema:
+          type: integer
+          default: 0
+      responses:
+        '200':
+          description: Work orders returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkOrderCollection'
+  /WORK_ORDER_API(WoNo={woNo}):
+    get:
+      operationId: getWorkOrder
+      summary: Get work order
+      description: Returns a specific maintenance work order by work order number.
+      tags:
+      - Work Orders
+      parameters:
+      - name: woNo
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: Work order number
+      responses:
+        '200':
+          description: Work order returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkOrder'
+        '404':
+          description: Work order not found
+components:
+  schemas:
+    WorkOrder:
+      type: object
+      properties:
+        WoNo:
+          type: integer
+        Description:
+          type: string
+        ContractId:
+          type: string
+          description: Site/contract code
+        MchCode:
+          type: string
+          description: Maintenance object (equipment) code
+        WoStatus:
+          type: string
+          enum:
+          - Prepared
+          - Released
+          - Work Done
+          - Finished
+          - Cancelled
+        WoType:
+          type: string
+          description: Work order type
+        Priority:
+          type: integer
+          minimum: 1
+          maximum: 10
+        EarlyStart:
+          type: string
+          format: date
+        EarlyFinish:
+          type: string
+          format: date
+        ActualStart:
+          type: string
+          format: date-time
+        ActualFinish:
+          type: string
+          format: date-time
+        CostAmount:
+          type: number
+          format: double
+        OrgCode:
+          type: string
+          description: Maintenance organization code
+        EmployeeId:
+          type: string
+    WorkOrderCollection:
+      type: object
+      properties:
+        '@odata.context':
+          type: string
+        '@odata.count':
+          type: integer
+        value:
+          type: array
+          items:
+            $ref: '#/components/schemas/WorkOrder'
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://login.ifs.cloud/oauth2/authorize
+          tokenUrl: https://login.ifs.cloud/oauth2/token
+          scopes:
+            ifs.read: Read IFS data
+            ifs.write: Write IFS data
+externalDocs:
+  description: IFS Cloud Documentation
+  url: https://docs.ifs.com/
