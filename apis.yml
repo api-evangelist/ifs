@@ -1,27 +1,6 @@
 aid: ifs
 url: https://raw.githubusercontent.com/api-evangelist/ifs/refs/heads/main/apis.yml
 apis:
-- aid: ifs:ifs-cloud-erp-api
-  name: IFS Cloud ERP API
-  tags:
-  - Cloud
-  - ERP
-  - Finance
-  - Manufacturing
-  - Supply Chain
-  image: https://raw.githubusercontent.com/api-evangelist/ifs/refs/heads/main/image.png
-  humanURL: https://www.ifs.com/
-  baseURL: https://api.ifs.com
-  properties:
-  - url: https://www.ifs.com/
-    type: Documentation
-  - url: openapi/ifs-cloud-erp-openapi.yml
-    type: OpenAPI
-  description: >-
-    IFS Cloud ERP provides REST APIs for enterprise resource planning covering financials,
-    procurement, manufacturing, project management, and supply chain for energy,
-    manufacturing, aerospace, and defense industries.
-
 - aid: ifs:ifs-field-service-management-api
   name: IFS Field Service Management API
   tags:
@@ -37,10 +16,9 @@ apis:
   - url: https://www.ifs.com/
     type: Documentation
   description: >-
-    IFS Field Service Management APIs enable work order management, scheduling optimization,
-    technician dispatch, parts inventory, and mobile workforce coordination for
-    energy, manufacturing, and telecom field service operations.
-
+    IFS Field Service Management APIs enable work order management, scheduling optimization, technician
+    dispatch, parts inventory, and mobile workforce coordination for energy, manufacturing, and telecom
+    field service operations.
 - aid: ifs:ifs-enterprise-asset-management-api
   name: IFS Enterprise Asset Management API
   tags:
@@ -56,10 +34,9 @@ apis:
   - url: https://www.ifs.com/
     type: Documentation
   description: >-
-    IFS Enterprise Asset Management APIs provide integration with asset lifecycle
-    management, maintenance planning, work order execution, and predictive maintenance
-    workflows for industrial and infrastructure asset-intensive organizations.
-
+    IFS Enterprise Asset Management APIs provide integration with asset lifecycle management, maintenance
+    planning, work order execution, and predictive maintenance workflows for industrial and infrastructure
+    asset-intensive organizations.
 - aid: ifs:ifs-enterprise-service-management-api
   name: IFS Enterprise Service Management API
   tags:
@@ -74,10 +51,56 @@ apis:
   - url: https://www.ifs.com/
     type: Documentation
   description: >-
-    IFS Enterprise Service Management APIs enable IT service management, service
-    catalog, incident management, and CMDB integration for enterprise IT and shared
-    service organizations using the IFS Cloud platform.
-
+    IFS Enterprise Service Management APIs enable IT service management, service catalog, incident management,
+    and CMDB integration for enterprise IT and shared service organizations using the IFS Cloud platform.
+- aid: ifs:ifs-finance-api
+  name: IFS Finance API
+  description: General ledger, vouchers, and financial entities
+  humanURL: https://www.ifs.com/
+  baseURL: https://api.ifs.com
+  tags:
+  - Finance
+  properties:
+  - type: OpenAPI
+    url: openapi/ifs-finance-api-openapi.yml
+  - type: Documentation
+    url: https://www.ifs.com/
+- aid: ifs:ifs-inventory-api
+  name: IFS Inventory API
+  description: Parts and inventory management
+  humanURL: https://www.ifs.com/
+  baseURL: https://api.ifs.com
+  tags:
+  - Inventory
+  properties:
+  - type: OpenAPI
+    url: openapi/ifs-inventory-api-openapi.yml
+  - type: Documentation
+    url: https://www.ifs.com/
+- aid: ifs:ifs-procurement-api
+  name: IFS Procurement API
+  description: Purchase orders and supplier management
+  humanURL: https://www.ifs.com/
+  baseURL: https://api.ifs.com
+  tags:
+  - Procurement
+  properties:
+  - type: OpenAPI
+    url: openapi/ifs-procurement-api-openapi.yml
+  - type: Documentation
+    url: https://www.ifs.com/
+- aid: ifs:ifs-work-orders-api
+  name: IFS Work Orders API
+  description: Maintenance work orders and job management
+  humanURL: https://www.ifs.com/
+  baseURL: https://api.ifs.com
+  tags:
+  - Work Orders
+  properties:
+  - type: OpenAPI
+    url: openapi/ifs-work-orders-api-openapi.yml
+  - type: Documentation
+    url: https://www.ifs.com/
 common:
 - type: AgenticAccess
   url: agentic-access/ifs-agentic-access.yml
@@ -98,6 +121,19 @@ description: >-
   APIs enable integration with IFS Cloud across manufacturing, energy, aerospace,
   defense, and service industries. IFS is headquartered in Linköping, Sweden with
   operations in over 90 countries.
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 image: https://raw.githubusercontent.com/api-evangelist/ifs/refs/heads/main/image.png
 tags:
 - ERP
