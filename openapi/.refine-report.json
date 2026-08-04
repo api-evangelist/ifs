@@ -1,0 +1,20 @@
+{
+  "provider": "ifs",
+  "sources": [
+    "ifs-finance-api-openapi.yml",
+    "ifs-inventory-api-openapi.yml",
+    "ifs-procurement-api-openapi.yml",
+    "ifs-work-orders-api-openapi.yml"
+  ],
+  "outputs": [
+    "ifs-finance-api-openapi.yml",
+    "ifs-inventory-api-openapi.yml",
+    "ifs-procurement-api-openapi.yml",
+    "ifs-work-orders-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
