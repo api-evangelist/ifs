@@ -1,5 +1,6 @@
 aid: ifs
 url: https://raw.githubusercontent.com/api-evangelist/ifs/refs/heads/main/apis.yml
+specificationVersion: '0.23'
 apis:
 - aid: ifs:ifs-field-service-management-api
   name: IFS Field Service Management API
