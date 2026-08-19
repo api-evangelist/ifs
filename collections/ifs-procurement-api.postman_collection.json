@@ -1,0 +1,367 @@
+{
+  "item": [
+    {
+      "id": "4be29473-bfd2-480c-9c07-ca35d7a5a503",
+      "name": "Procurement",
+      "description": {
+        "content": "Purchase orders and supplier management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "72682d29-be65-4581-bf70-97f69143fcac",
+          "name": "List purchase orders",
+          "request": {
+            "name": "List purchase orders",
+            "description": {
+              "content": "Returns purchase orders with support for OData filtering by order date, supplier, status, and site.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "PURCHASE_ORDER_API"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "$filter",
+                  "value": "<string>",
+                  "description": "OData filter (e.g., \"OrderDate ge 2024-01-01 and OrderStatus eq 'Released'\")"
+                },
+                {
+                  "disabled": false,
+                  "key": "$top",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "key": "$skip",
+                  "value": "0"
+                },
+                {
+                  "disabled": false,
+                  "key": "$select",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "$expand",
+                  "value": "<string>",
+                  "description": "Navigation properties to expand (e.g., \"PurchaseOrderLines\")"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "IFS Cloud tenant identifier",
+                  "type": "any",
+                  "value": "{{tenant}}",
+                  "key": "tenant"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f4b04892-26eb-41ee-a16d-dc34a2810f8b",
+              "name": "Purchase orders returned",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "PURCHASE_ORDER_API"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "$filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "$top",
+                      "value": "100"
+                    },
+                    {
+                      "key": "$skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "$select",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "$expand",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "IFS Cloud tenant identifier",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"@odata.context\": \"string\",\n  \"@odata.count\": 4950,\n  \"value\": [\n    {\n      \"OrderNo\": \"string\",\n      \"Contract\": \"string\",\n      \"VendorNo\": \"string\",\n      \"VendorName\": \"string\",\n      \"OrderDate\": \"1986-04-14\",\n      \"WantedDeliveryDate\": \"1985-08-26\",\n      \"OrderStatus\": \"Closed\",\n      \"TotalOrderAmount\": 5388.325628079613,\n      \"CurrencyCode\": \"string\",\n      \"PurchaseOrderLines\": [\n        {\n          \"LineNo\": 6215,\n          \"PartNo\": \"string\",\n          \"Description\": \"string\",\n          \"OrderedQty\": 1323.2194545799637,\n          \"ReceivedQty\": 2852.187378671589,\n          \"RemainingQty\": 5458.922836541663,\n          \"BuyUnitPrice\": 9123.110630374304,\n          \"LineTotal\": 4220.90903612759\n        },\n        {\n          \"LineNo\": 7240,\n          \"PartNo\": \"string\",\n          \"Description\": \"string\",\n          \"OrderedQty\": 443.65561091984085,\n          \"ReceivedQty\": 5994.720214407476,\n          \"RemainingQty\": 1862.8872129202923,\n          \"BuyUnitPrice\": 8351.445760321807,\n          \"LineTotal\": 5509.675337253196\n        }\n      ]\n    },\n    {\n      \"OrderNo\": \"string\",\n      \"Contract\": \"string\",\n      \"VendorNo\": \"string\",\n      \"VendorName\": \"string\",\n      \"OrderDate\": \"2019-10-12\",\n      \"WantedDeliveryDate\": \"1961-07-12\",\n      \"OrderStatus\": \"Closed\",\n      \"TotalOrderAmount\": 9650.175480321377,\n      \"CurrencyCode\": \"string\",\n      \"PurchaseOrderLines\": [\n        {\n          \"LineNo\": 8709,\n          \"PartNo\": \"string\",\n          \"Description\": \"string\",\n          \"OrderedQty\": 2262.778176171428,\n          \"ReceivedQty\": 4594.869652307715,\n          \"RemainingQty\": 9526.196374964238,\n          \"BuyUnitPrice\": 7024.599640187897,\n          \"LineTotal\": 2246.961032256929\n        },\n        {\n          \"LineNo\": 5295,\n          \"PartNo\": \"string\",\n          \"Description\": \"string\",\n          \"OrderedQty\": 4886.2671571699075,\n          \"ReceivedQty\": 2589.08662895468,\n          \"RemainingQty\": 3660.638874338403,\n          \"BuyUnitPrice\": 7644.86252885133,\n          \"LineTotal\": 7464.050690097781\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "aa34a095-4fa4-459c-9a3b-ed55d217f260",
+          "name": "Get purchase order",
+          "request": {
+            "name": "Get purchase order",
+            "description": {
+              "content": "Returns a specific purchase order by order number including lines, header data, and delivery schedule.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "PURCHASE_ORDER_API(OrderNo='{{orderNo}}')"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "$expand",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "IFS Cloud tenant identifier",
+                  "type": "any",
+                  "value": "{{tenant}}",
+                  "key": "tenant"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4b6274e0-6023-4ba5-800a-062374abc47b",
+              "name": "Purchase order returned",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "PURCHASE_ORDER_API(OrderNo='{{orderNo}}')"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "$expand",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "IFS Cloud tenant identifier",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"OrderNo\": \"string\",\n  \"Contract\": \"string\",\n  \"VendorNo\": \"string\",\n  \"VendorName\": \"string\",\n  \"OrderDate\": \"1988-08-17\",\n  \"WantedDeliveryDate\": \"2016-08-03\",\n  \"OrderStatus\": \"Planned\",\n  \"TotalOrderAmount\": 5575.260718367267,\n  \"CurrencyCode\": \"string\",\n  \"PurchaseOrderLines\": [\n    {\n      \"LineNo\": 4567,\n      \"PartNo\": \"string\",\n      \"Description\": \"string\",\n      \"OrderedQty\": 1305.650295395805,\n      \"ReceivedQty\": 5886.154416385265,\n      \"RemainingQty\": 5010.795787481228,\n      \"BuyUnitPrice\": 7606.310786746831,\n      \"LineTotal\": 5991.6345429564035\n    },\n    {\n      \"LineNo\": 5865,\n      \"PartNo\": \"string\",\n      \"Description\": \"string\",\n      \"OrderedQty\": 3995.492624358323,\n      \"ReceivedQty\": 1081.5137182595813,\n      \"RemainingQty\": 7651.972919748906,\n      \"BuyUnitPrice\": 7093.042965728745,\n      \"LineTotal\": 550.3578831116063\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2cd118a8-92fd-46ed-9e04-cd43a0eb4ddf",
+              "name": "Purchase order not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "PURCHASE_ORDER_API(OrderNo='{{orderNo}}')"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "$expand",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "IFS Cloud tenant identifier",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "IFS Cloud tenant identifier",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "yourcompany",
+      "key": "tenant"
+    },
+    {
+      "type": "string",
+      "value": "https://{{tenant}}.ifs.cloud/main/ifsapp/data",
+      "key": "baseUrl"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) Purchase order number",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "<string>",
+      "key": "orderNo"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "ifs.read ifs.write"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://login.ifs.cloud/oauth2/token"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://login.ifs.cloud/oauth2/authorize"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "cb291544-6c40-4039-bffc-3018e0b02a96",
+    "name": "IFS Cloud ERP Finance Procurement API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "IFS Cloud ERP REST API providing integration with financial management, procurement, manufacturing, project management, and supply chain modules. IFS Cloud exposes OData-compatible REST endpoints for accessing business entities across energy, manufacturing, aerospace, and defense industry verticals.\n\nContact Support:\n Name: IFS Support",
+      "type": "text/plain"
+    }
+  }
+}

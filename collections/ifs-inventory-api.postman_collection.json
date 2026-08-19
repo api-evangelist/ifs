@@ -1,0 +1,183 @@
+{
+  "item": [
+    {
+      "id": "d72f2120-22ae-4bdf-b895-e5a927b71aa5",
+      "name": "Inventory",
+      "description": {
+        "content": "Parts and inventory management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e9e5e262-f465-4e80-baef-7617c1f63c2d",
+          "name": "List parts from part catalog",
+          "request": {
+            "name": "List parts from part catalog",
+            "description": {
+              "content": "Returns parts from the IFS part catalog with inventory balances and descriptions.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "PART_CATALOG_API"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "$filter",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "$top",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "key": "$skip",
+                  "value": "0"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "IFS Cloud tenant identifier",
+                  "type": "any",
+                  "value": "{{tenant}}",
+                  "key": "tenant"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "03676f86-d923-4ff8-9962-93e3d0a670e0",
+              "name": "Parts returned",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "PART_CATALOG_API"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "$filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "$top",
+                      "value": "100"
+                    },
+                    {
+                      "key": "$skip",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "IFS Cloud tenant identifier",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"@odata.context\": \"string\",\n  \"@odata.count\": 4541,\n  \"value\": [\n    {\n      \"PartNo\": \"string\",\n      \"Description\": \"string\",\n      \"UnitMeas\": \"string\",\n      \"PartType\": \"MANUFACTURED\",\n      \"DangerousGoodsClass\": \"string\",\n      \"NetWeight\": 8502.455407934649,\n      \"GrossWeight\": 7518.000187751256\n    },\n    {\n      \"PartNo\": \"string\",\n      \"Description\": \"string\",\n      \"UnitMeas\": \"string\",\n      \"PartType\": \"PURCHASED\",\n      \"DangerousGoodsClass\": \"string\",\n      \"NetWeight\": 5599.356578314742,\n      \"GrossWeight\": 3238.1800978946053\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "IFS Cloud tenant identifier",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "yourcompany",
+      "key": "tenant"
+    },
+    {
+      "type": "string",
+      "value": "https://{{tenant}}.ifs.cloud/main/ifsapp/data",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "ifs.read ifs.write"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://login.ifs.cloud/oauth2/token"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://login.ifs.cloud/oauth2/authorize"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "74e57a5d-780a-4c5c-8226-b1002a014618",
+    "name": "IFS Cloud ERP Finance Inventory API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "IFS Cloud ERP REST API providing integration with financial management, procurement, manufacturing, project management, and supply chain modules. IFS Cloud exposes OData-compatible REST endpoints for accessing business entities across energy, manufacturing, aerospace, and defense industry verticals.\n\nContact Support:\n Name: IFS Support",
+      "type": "text/plain"
+    }
+  }
+}

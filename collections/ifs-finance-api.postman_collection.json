@@ -1,0 +1,381 @@
+{
+  "item": [
+    {
+      "id": "ac21a6a3-adcc-43c7-b3f1-19134c883228",
+      "name": "Finance",
+      "description": {
+        "content": "General ledger, vouchers, and financial entities",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5ffede19-5ac9-41d0-930d-3f5798982ed0",
+          "name": "List accounting vouchers",
+          "request": {
+            "name": "List accounting vouchers",
+            "description": {
+              "content": "Returns general ledger voucher records. Supports OData $filter, $select, $orderby, and $top/$skip for pagination.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "VOUCHER_API"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "$filter",
+                  "value": "<string>",
+                  "description": "OData filter expression (e.g., \"VoucherDate ge 2024-01-01 and AccountingYear eq '2024'\")"
+                },
+                {
+                  "disabled": false,
+                  "key": "$select",
+                  "value": "<string>",
+                  "description": "Comma-separated list of fields to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "$top",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "key": "$skip",
+                  "value": "0"
+                },
+                {
+                  "disabled": false,
+                  "key": "$orderby",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "IFS Cloud tenant identifier",
+                  "type": "any",
+                  "value": "{{tenant}}",
+                  "key": "tenant"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "84b59f64-69ab-4eb1-a065-9247f767e983",
+              "name": "Voucher list returned",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "VOUCHER_API"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "$filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "$select",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "$top",
+                      "value": "100"
+                    },
+                    {
+                      "key": "$skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "$orderby",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "IFS Cloud tenant identifier",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"@odata.context\": \"string\",\n  \"@odata.count\": 8149,\n  \"value\": [\n    {\n      \"Company\": \"string\",\n      \"AccountingYear\": \"string\",\n      \"VoucherType\": \"string\",\n      \"VoucherNo\": 9001,\n      \"VoucherDate\": \"1968-07-02\",\n      \"Description\": \"string\",\n      \"Function\": \"string\",\n      \"Amount\": 9197.530777688635,\n      \"CurrencyCode\": \"string\",\n      \"Objstate\": \"string\",\n      \"UserGroup\": \"string\",\n      \"VoucherRows\": [\n        {\n          \"RowNo\": 3923,\n          \"Account\": \"string\",\n          \"CostCentre\": \"string\",\n          \"ProjectId\": \"string\",\n          \"Quantity\": 7803.125477407595,\n          \"Amount\": 884.5510400477863,\n          \"CurrencyAmount\": 388.8540114744532,\n          \"Text\": \"string\",\n          \"AccountingPeriod\": 3644\n        },\n        {\n          \"RowNo\": 5298,\n          \"Account\": \"string\",\n          \"CostCentre\": \"string\",\n          \"ProjectId\": \"string\",\n          \"Quantity\": 7041.572716934922,\n          \"Amount\": 5790.592414856682,\n          \"CurrencyAmount\": 9386.680622514717,\n          \"Text\": \"string\",\n          \"AccountingPeriod\": 9858\n        }\n      ]\n    },\n    {\n      \"Company\": \"string\",\n      \"AccountingYear\": \"string\",\n      \"VoucherType\": \"string\",\n      \"VoucherNo\": 4867,\n      \"VoucherDate\": \"2005-01-01\",\n      \"Description\": \"string\",\n      \"Function\": \"string\",\n      \"Amount\": 705.0680622312067,\n      \"CurrencyCode\": \"string\",\n      \"Objstate\": \"string\",\n      \"UserGroup\": \"string\",\n      \"VoucherRows\": [\n        {\n          \"RowNo\": 6310,\n          \"Account\": \"string\",\n          \"CostCentre\": \"string\",\n          \"ProjectId\": \"string\",\n          \"Quantity\": 2471.7708803688374,\n          \"Amount\": 7022.657301402899,\n          \"CurrencyAmount\": 8229.06708540685,\n          \"Text\": \"string\",\n          \"AccountingPeriod\": 1994\n        },\n        {\n          \"RowNo\": 4503,\n          \"Account\": \"string\",\n          \"CostCentre\": \"string\",\n          \"ProjectId\": \"string\",\n          \"Quantity\": 1620.3714605259534,\n          \"Amount\": 8745.048768203826,\n          \"CurrencyAmount\": 4543.198102231723,\n          \"Text\": \"string\",\n          \"AccountingPeriod\": 7000\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5953abca-200b-42a1-8980-287aba687db8",
+          "name": "Get a specific voucher",
+          "request": {
+            "name": "Get a specific voucher",
+            "description": {
+              "content": "Returns a single voucher by its composite key (accounting year, voucher type, voucher number, and company).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "VOUCHER_API(AccountingYear='{{accountingYear}}',VoucherType='{{voucherType}}',VoucherNo={{voucherNo}},Company='{{company}}')"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "IFS Cloud tenant identifier",
+                  "type": "any",
+                  "value": "{{tenant}}",
+                  "key": "tenant"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "18736f46-49af-44c6-a89e-e0c72d784fde",
+              "name": "Voucher returned",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "VOUCHER_API(AccountingYear='{{accountingYear}}',VoucherType='{{voucherType}}',VoucherNo={{voucherNo}},Company='{{company}}')"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "IFS Cloud tenant identifier",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Company\": \"string\",\n  \"AccountingYear\": \"string\",\n  \"VoucherType\": \"string\",\n  \"VoucherNo\": 9434,\n  \"VoucherDate\": \"1997-01-04\",\n  \"Description\": \"string\",\n  \"Function\": \"string\",\n  \"Amount\": 6363.665181884255,\n  \"CurrencyCode\": \"string\",\n  \"Objstate\": \"string\",\n  \"UserGroup\": \"string\",\n  \"VoucherRows\": [\n    {\n      \"RowNo\": 9871,\n      \"Account\": \"string\",\n      \"CostCentre\": \"string\",\n      \"ProjectId\": \"string\",\n      \"Quantity\": 1365.5888104924086,\n      \"Amount\": 2823.7236446338234,\n      \"CurrencyAmount\": 3265.299827876684,\n      \"Text\": \"string\",\n      \"AccountingPeriod\": 9662\n    },\n    {\n      \"RowNo\": 4775,\n      \"Account\": \"string\",\n      \"CostCentre\": \"string\",\n      \"ProjectId\": \"string\",\n      \"Quantity\": 4989.611031829737,\n      \"Amount\": 4509.457732875345,\n      \"CurrencyAmount\": 2275.5018434307804,\n      \"Text\": \"string\",\n      \"AccountingPeriod\": 7987\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a8977123-74fb-4b74-b6e1-7117ae462d0c",
+              "name": "Voucher not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "VOUCHER_API(AccountingYear='{{accountingYear}}',VoucherType='{{voucherType}}',VoucherNo={{voucherNo}},Company='{{company}}')"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "IFS Cloud tenant identifier",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "IFS Cloud tenant identifier",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "yourcompany",
+      "key": "tenant"
+    },
+    {
+      "type": "string",
+      "value": "https://{{tenant}}.ifs.cloud/main/ifsapp/data",
+      "key": "baseUrl"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) Accounting year (e.g., \"2024\")",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "<string>",
+      "key": "accountingYear"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) Voucher type code",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "<string>",
+      "key": "voucherType"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) Voucher number",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "<integer>",
+      "key": "voucherNo"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) Company code",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "<string>",
+      "key": "company"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "ifs.read ifs.write"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://login.ifs.cloud/oauth2/token"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://login.ifs.cloud/oauth2/authorize"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "b8a2c7af-30a6-471d-a787-5e917d567058",
+    "name": "IFS Cloud ERP Finance API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "IFS Cloud ERP REST API providing integration with financial management, procurement, manufacturing, project management, and supply chain modules. IFS Cloud exposes OData-compatible REST endpoints for accessing business entities across energy, manufacturing, aerospace, and defense industry verticals.\n\nContact Support:\n Name: IFS Support",
+      "type": "text/plain"
+    }
+  }
+}

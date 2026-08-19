@@ -1,0 +1,78 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "IFS Cloud ERP Finance Work Orders API",
+    "version": "22.1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://login.ifs.cloud/oauth2/authorize",
+      "accessTokenUrl": "https://login.ifs.cloud/oauth2/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Work Orders",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List work orders",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}.ifs.cloud/main/ifsapp/data/WORK_ORDER_API",
+            "params": [
+              {
+                "name": "$filter",
+                "value": "",
+                "type": "query",
+                "description": "OData filter (e.g., \"WoStatus eq 'Released' and ContractId eq 'SITE1'\")"
+              },
+              {
+                "name": "$top",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "$skip",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns IFS maintenance work orders (WOs) with filtering by status, site, maintenance organization, and object."
+        },
+        {
+          "info": {
+            "name": "Get work order",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}.ifs.cloud/main/ifsapp/data/WORK_ORDER_API(WoNo=:woNo)",
+            "params": [
+              {
+                "name": "woNo",
+                "value": "",
+                "type": "path",
+                "description": "Work order number"
+              }
+            ]
+          },
+          "docs": "Returns a specific maintenance work order by work order number."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

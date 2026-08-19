@@ -1,0 +1,94 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "IFS Cloud ERP Finance Procurement API",
+    "version": "22.1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://login.ifs.cloud/oauth2/authorize",
+      "accessTokenUrl": "https://login.ifs.cloud/oauth2/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Procurement",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List purchase orders",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}.ifs.cloud/main/ifsapp/data/PURCHASE_ORDER_API",
+            "params": [
+              {
+                "name": "$filter",
+                "value": "",
+                "type": "query",
+                "description": "OData filter (e.g., \"OrderDate ge 2024-01-01 and OrderStatus eq 'Released'\")"
+              },
+              {
+                "name": "$top",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "$skip",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "$select",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "$expand",
+                "value": "",
+                "type": "query",
+                "description": "Navigation properties to expand (e.g., \"PurchaseOrderLines\")"
+              }
+            ]
+          },
+          "docs": "Returns purchase orders with support for OData filtering by order date, supplier, status, and site."
+        },
+        {
+          "info": {
+            "name": "Get purchase order",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}.ifs.cloud/main/ifsapp/data/PURCHASE_ORDER_API(OrderNo=':orderNo')",
+            "params": [
+              {
+                "name": "orderNo",
+                "value": "",
+                "type": "path",
+                "description": "Purchase order number"
+              },
+              {
+                "name": "$expand",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns a specific purchase order by order number including lines, header data, and delivery schedule."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

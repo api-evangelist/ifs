@@ -1,0 +1,332 @@
+{
+  "item": [
+    {
+      "id": "7f63ab07-a0d6-4e73-8afc-ffea1b170d98",
+      "name": "Work Orders",
+      "description": {
+        "content": "Maintenance work orders and job management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e609a4e6-aa6c-41d9-b3af-cc201eccf518",
+          "name": "List work orders",
+          "request": {
+            "name": "List work orders",
+            "description": {
+              "content": "Returns IFS maintenance work orders (WOs) with filtering by status, site, maintenance organization, and object.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "WORK_ORDER_API"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "$filter",
+                  "value": "<string>",
+                  "description": "OData filter (e.g., \"WoStatus eq 'Released' and ContractId eq 'SITE1'\")"
+                },
+                {
+                  "disabled": false,
+                  "key": "$top",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "key": "$skip",
+                  "value": "0"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "IFS Cloud tenant identifier",
+                  "type": "any",
+                  "value": "{{tenant}}",
+                  "key": "tenant"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d193ae56-1429-46c4-a368-749ae9ea3808",
+              "name": "Work orders returned",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "WORK_ORDER_API"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "$filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "$top",
+                      "value": "100"
+                    },
+                    {
+                      "key": "$skip",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "IFS Cloud tenant identifier",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"@odata.context\": \"string\",\n  \"@odata.count\": 6682,\n  \"value\": [\n    {\n      \"WoNo\": 7141,\n      \"Description\": \"string\",\n      \"ContractId\": \"string\",\n      \"MchCode\": \"string\",\n      \"WoStatus\": \"Prepared\",\n      \"WoType\": \"string\",\n      \"Priority\": 2,\n      \"EarlyStart\": \"2019-09-24\",\n      \"EarlyFinish\": \"2001-03-24\",\n      \"ActualStart\": \"2018-08-30T20:05:25.718Z\",\n      \"ActualFinish\": \"1977-04-15T10:19:17.849Z\",\n      \"CostAmount\": 7459.225504158333,\n      \"OrgCode\": \"string\",\n      \"EmployeeId\": \"string\"\n    },\n    {\n      \"WoNo\": 3155,\n      \"Description\": \"string\",\n      \"ContractId\": \"string\",\n      \"MchCode\": \"string\",\n      \"WoStatus\": \"Cancelled\",\n      \"WoType\": \"string\",\n      \"Priority\": 2,\n      \"EarlyStart\": \"2008-05-24\",\n      \"EarlyFinish\": \"1960-03-06\",\n      \"ActualStart\": \"1972-06-07T12:21:28.761Z\",\n      \"ActualFinish\": \"2013-07-01T13:30:26.603Z\",\n      \"CostAmount\": 8719.030646596331,\n      \"OrgCode\": \"string\",\n      \"EmployeeId\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "58c7e85e-6789-4072-a63b-075d0a49659c",
+          "name": "Get work order",
+          "request": {
+            "name": "Get work order",
+            "description": {
+              "content": "Returns a specific maintenance work order by work order number.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "WORK_ORDER_API(WoNo={{woNo}})"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "IFS Cloud tenant identifier",
+                  "type": "any",
+                  "value": "{{tenant}}",
+                  "key": "tenant"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "22c194e5-bf4b-4dfa-8b50-175dc57d4dc2",
+              "name": "Work order returned",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "WORK_ORDER_API(WoNo={{woNo}})"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "IFS Cloud tenant identifier",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"WoNo\": 6526,\n  \"Description\": \"string\",\n  \"ContractId\": \"string\",\n  \"MchCode\": \"string\",\n  \"WoStatus\": \"Finished\",\n  \"WoType\": \"string\",\n  \"Priority\": 4,\n  \"EarlyStart\": \"1999-12-01\",\n  \"EarlyFinish\": \"1977-09-13\",\n  \"ActualStart\": \"2010-07-24T13:13:06.748Z\",\n  \"ActualFinish\": \"1989-07-26T21:58:42.544Z\",\n  \"CostAmount\": 9675.56661208878,\n  \"OrgCode\": \"string\",\n  \"EmployeeId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1d56d6e5-aab5-44af-8a31-0ab05715c1f3",
+              "name": "Work order not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "WORK_ORDER_API(WoNo={{woNo}})"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "IFS Cloud tenant identifier",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "IFS Cloud tenant identifier",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "yourcompany",
+      "key": "tenant"
+    },
+    {
+      "type": "string",
+      "value": "https://{{tenant}}.ifs.cloud/main/ifsapp/data",
+      "key": "baseUrl"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) Work order number",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "<integer>",
+      "key": "woNo"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "ifs.read ifs.write"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://login.ifs.cloud/oauth2/token"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://login.ifs.cloud/oauth2/authorize"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "bd95aee7-af6d-45b0-b331-39d4f3daf6ff",
+    "name": "IFS Cloud ERP Finance Work Orders API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "IFS Cloud ERP REST API providing integration with financial management, procurement, manufacturing, project management, and supply chain modules. IFS Cloud exposes OData-compatible REST endpoints for accessing business entities across energy, manufacturing, aerospace, and defense industry verticals.\n\nContact Support:\n Name: IFS Support",
+      "type": "text/plain"
+    }
+  }
+}
