@@ -9,6 +9,12 @@ apis:
   - Field Service
   - Mobile
   - Scheduling
+  - workorder
+  tags_raw:
+  - Asset Management
+  - Field Service
+  - Mobile
+  - Scheduling
   - Work Order
   image: https://raw.githubusercontent.com/api-evangelist/ifs/refs/heads/main/image.png
   humanURL: https://www.ifs.com/
@@ -41,6 +47,11 @@ apis:
 - aid: ifs:ifs-enterprise-service-management-api
   name: IFS Enterprise Service Management API
   tags:
+  - Cloud
+  - Help Desk
+  - ITSM
+  - Service Management
+  tags_raw:
   - Cloud
   - Helpdesk
   - ITSM
