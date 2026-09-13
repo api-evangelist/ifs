@@ -1,0 +1,151 @@
+generated: '2026-09-13'
+method: searched
+source: https://developer.ifs.com/ (IFS Developer Portal tool catalog, assets/tools-info.json) + registry lookups on npm, PyPI, NuGet, Maven Central, RubyGems, crates.io, pkg.go.dev
+summary: >-
+  IFS publishes NO first-party API client SDK to any public package registry. A search of
+  npm (registry.npmjs.org search + direct name lookups), PyPI, NuGet
+  (azuresearch-usnc.nuget.org) and the other registries returned nothing owned by IFS —
+  the npm package `ifs-cloud-mcp` and the PyPI package `ifs` are both third-party and are
+  recorded below only so a later run does not mistake them for first-party.
+  What IFS does publish first-party is a catalog of Windows/.NET developer TOOLS,
+  distributed as direct downloads (Azure Blob / developer.ifs.com assets) with no registry
+  metadata endpoint. Those are listed below with the version the portal states. They are
+  development tooling, not API client libraries, so NO `SDKs` pointer is emitted for this
+  file — sdk_count for IFS is genuinely 0.
+sdk_count: 0
+registries_searched:
+- registry: npm
+  query: 'text=ifs cloud; maintainer:ifs; @ifs/ifs-cloud; ifs-cloud; @ifsworld/core'
+  first_party_hits: 0
+- registry: pypi
+  query: ifs-cloud, ifs, ifsapi
+  first_party_hits: 0
+- registry: nuget
+  query: IFS Cloud
+  first_party_hits: 0
+- registry: maven-central
+  query: ifs
+  first_party_hits: 0
+packages:
+- name: IFS Developer Studio
+  id: devstudio
+  kind: developer-tool
+  official: true
+  registry: direct-download
+  url: https://ifsdevtools.blob.core.windows.net/ifs-dev-tools/IFSDeveloperStudio/SetupDeveloperStudio_18-64bit.exe
+  version: 18 (v26.1.1164)
+  published: null
+  note: >-
+    Version string is the one developer.ifs.com/assets/tools-info.json publishes; the
+    portal news feed announced v26.1.1220 on 2026-08-19 via Update Center only. No release
+    date is attached to the download, and there is no registry metadata endpoint for a
+    direct .exe download, so `published` is null — checked, nothing to record.
+  docs: https://docs.ifs.com/techdocs/26r1/060_development/050_development_tools/002_developer_studio/
+- name: IFS Script-A-Rest
+  id: scriptarest
+  kind: cli
+  official: true
+  registry: direct-download
+  url: https://ifsdevtools.blob.core.windows.net/ifs-dev-tools/IFSScriptARest/Script-A-Rest_latest.zip
+  version: 3.0.0
+  published: '2026-07-27'
+  note: >-
+    Date is the release announcement in developer.ifs.com/assets/news-items.json. The
+    download URL is unpinned (`Script-A-Rest_latest.zip`) — a consumer cannot tell which
+    build they are getting from the URL. Command surface is captured in cli/ifs-cli.yml.
+  docs: https://docs.ifs.com/techdocs/26r1/060_development/050_development_tools/150_script_a_rest/
+- name: IFS Update Analyzer
+  id: updanalyzer
+  kind: developer-tool
+  official: true
+  registry: direct-download
+  url: https://developer.ifs.com/assets/devtools/IFSUpdateAnalyzer/UpdateAnalyzer_x64.msi
+  version: '10.022'
+  published: null
+- name: IFS Configuration Analyzer
+  id: confanalyzer
+  kind: developer-tool
+  official: true
+  registry: direct-download
+  url: https://developer.ifs.com/assets/devtools/IFSConfigurationAnalyzer/ConfigurationAnalyzer.msi
+  version: '10.016'
+  published: null
+- name: IFS Lobby Analyzer
+  id: lobbyanalyzer
+  kind: developer-tool
+  official: true
+  registry: direct-download
+  url: https://developer.ifs.com/assets/devtools/IFSLobbyAnalyzer/LobbyRegressionTester1.8.zip
+  version: '1.8'
+  published: '2026-09-02'
+  note: Date read from the tool's own changelog at developer.ifs.com/assets/stories/lobbyanalyzer_changelog.md
+- name: IFS Report Designer
+  id: repdesigner
+  kind: developer-tool
+  official: true
+  registry: direct-download
+  url: https://developer.ifs.com/assets/devtools/IFSReportDesigner/SetupIFSReportDesigner.exe
+  version: 200.3.0004
+  published: null
+- name: IFS Report Studio Migration Tool
+  id: repmigtool
+  kind: developer-tool
+  official: true
+  registry: direct-download
+  url: https://developer.ifs.com/assets/devtools/IFSReportMigrationTool/ReportStudioMigrationTool.msi
+  version: 1.0.15
+  published: null
+- name: IFS APF Development Tools
+  id: apftools
+  kind: developer-tool
+  official: true
+  registry: direct-download
+  url: https://developer.ifs.com/assets/devtools/IFSApplicationFormsDevelopment/SetupIFSAPFDevelopment100.exe
+  version: 100.452.11.0
+  published: null
+- name: IFS Config Builder
+  id: confbuilder
+  kind: developer-tool
+  official: true
+  registry: direct-download
+  url: https://developer.ifs.com/assets/devtools/IFSConfigBuilder/SetupIFSConfigBuilder100.exe
+  version: 10.0.5.3
+  published: null
+- name: IFS Report Data Source Extension
+  id: repextension
+  kind: developer-tool
+  official: true
+  registry: direct-download
+  url: https://developer.ifs.com/assets/devtools/IFSReportDataExtension/SetupIFSReportDataExtension.exe
+  version: 200.2.2.0
+  published: null
+- name: IFS Cloud Development Kit
+  id: ifsclouddevelopmentkit
+  kind: ide-extension
+  official: true
+  registry: vscode-marketplace
+  url: https://marketplace.visualstudio.com/items?itemName=IFS.ifsclouddevelopmentkit
+  version: 0.0.9
+  published: '2026-06-09'
+  status: early-preview
+  note: >-
+    Published by the `IFS` marketplace publisher. IFS's own announcement (2026-03-25 on the
+    developer portal news feed) calls it early preview / beta, not yet generally available
+    and "not recommended for production or daily use"; IFS points daily work at Developer
+    Studio instead. `published` is the marketplace lastUpdated date.
+third_party_not_ifs:
+- name: ifs-cloud-mcp
+  registry: npm
+  version: 1.0.0
+  published: '2026-02-19'
+  publisher: keerthi.prasad (keerthi@productmind.pm)
+  note: Community MCP server for IFS Cloud work orders over OData. NOT published by IFS.
+- name: ifs
+  registry: pypi
+  version: 0.12.0
+  publisher: Chris Bednarski
+  note: Unrelated package (name collision). NOT IFS the company.
+licensing_note: >-
+  All developer tools are free from the portal but their use is governed by the IFS
+  Development License Agreement, which must be accepted at download
+  (https://www.ifs.com/corp/-/media/files/legal/development_license_agreement.pdf).

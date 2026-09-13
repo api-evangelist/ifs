@@ -4,45 +4,57 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: IFS
 providerId: ifs
 created: '2026-05-04'
-# Provenance stamped 2026-08-11: this artifact was written by the API Evangelist
-# bulk sweep dated 2026-05-04, not harvested from the provider. See roadmap#35.
-method: generated
-modified: '2026-05-05'
-reconciled: false
+modified: '2026-09-13'
+generated: '2026-09-13'
+method: searched
+source: https://docs.ifs.com/policy/APIUsageCloud.pdf + https://docs.ifs.com/techdocs/26r1/040_tailoring/300_extensibility/020_api_explorer/ + https://docs.ifs.com/techdocs/26r1/030_administration/030_integration/
+reconciled: true
+limit_count: 0
 tags:
   - ERP
   - EAM
   - Field Service
   - Rate Limiting
-description: IFS does not publish public rate-limit numbers for its IFS Cloud APIs. Throughput is governed
-  by the customer's contracted environment sizing and the application server's connection pools rather
-  than by a documented per-key TPS ceiling. Limits captured here describe documented governance surfaces
-  generically; specific values must be obtained from the customer's IFS Cloud tenant configuration.
-notes: No public IFS rate-limit documentation page reachable. Customers should consult their IFS Cloud
-  Technical Documentation in Lifecycle Experience for tenant-specific governance.
-responseCodes:
-  throttled: 429
-  serviceUnavailable: 503
-limits:
-  - name: Tenant API throughput
-    scope: tenant
-    metric: varies
-    limit: governed by contracted IFS Cloud environment sizing
-    applies:
-      - IFS Cloud ERP API
-      - IFS Field Service Management API
-      - IFS Enterprise Asset Management API
-      - IFS Enterprise Service Management API
-policies:
-  - name: Backoff Strategy
-    description: Clients receiving 429 or 503 should implement exponential backoff with jitter and honor
-      Retry-After when present.
-  - name: Capacity Sizing
-    description: Throughput is driven by the contracted environment tier and application server pool
-      configuration; raise capacity by working with the IFS Customer Success team rather than expecting
-      automatic burst.
-  - name: Fair Use
-    description: IFS reserves the right to throttle traffic that materially impacts shared infrastructure.
+description: >-
+  IFS documents NO rate limits for the IFS Cloud OData APIs — no per-key or per-account
+  request ceiling, no window, no burst allowance, and no rate-limit response headers. This is
+  consistent with the deployment model: IFS Cloud runs as a per-customer environment, so
+  throughput is a function of the customer's contracted environment sizing and application
+  server configuration rather than a published multi-tenant quota. The API Usage Policy speaks
+  about appropriate use and performance responsibility, not about numeric limits: it states
+  that it is the customer's responsibility to ensure APIs are used appropriately and that the
+  user has enough knowledge not to cause "process blockages or performance issues".
+notes: >-
+  limit_count is 0 because nothing is published, not because nothing was looked for. This
+  replaces an earlier bulk-sweep-generated file (method: generated, 2026-05-04) that asserted
+  429/503 throttling response codes, a Retry-After convention, and three named IFS policies
+  ("Backoff Strategy", "Capacity Sizing", "Fair Use"). None of those were read from an IFS
+  page and all have been removed.
+response_headers: []
+status_code_on_exhaustion: null
+evidence:
+  - url: https://docs.ifs.com/policy/APIUsageCloud.pdf
+    status: 200
+    note: API Usage Policy for IFS Cloud. Covers allowed usage, API types and API classes. No limits.
+  - url: https://docs.ifs.com/techdocs/26r1/040_tailoring/300_extensibility/020_api_explorer/
+    status: 200
+    note: API Explorer / inbound REST integration reference. No limits, no rate-limit headers.
+  - url: https://api.ifs.com/
+    status: 503
+    note: Not a live API host, so no runtime rate-limit headers could be observed.
+limits: []
+governance:
+  - name: Environment sizing
+    description: >-
+      Throughput is governed by the contracted IFS Cloud environment sizing and application
+      server connection pools. Tenant-specific figures come from the customer's own IFS Cloud
+      Technical Documentation in Lifecycle Experience, not from a public page.
+  - name: Appropriate use (policy, not a limit)
+    description: >-
+      "It is the responsibility of the customer to make sure that APIs are used appropriately,
+      and that the user of those APIs has enough knowledge not to cause problems such as
+      license violations, process blockages or performance issues."
+    source: https://docs.ifs.com/policy/APIUsageCloud.pdf
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

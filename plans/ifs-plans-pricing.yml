@@ -4,54 +4,47 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: IFS
 providerId: ifs
 created: '2026-05-04'
-# Provenance stamped 2026-08-11: this artifact was written by the API Evangelist
-# bulk sweep dated 2026-05-04, not harvested from the provider. See roadmap#35.
-method: generated
-modified: '2026-05-05'
-reconciled: false
+modified: '2026-09-13'
+generated: '2026-09-13'
+method: searched
+source: https://www.ifs.com/ (searched for a published pricing or plans page) + https://www.ifs.com/en/legal (Product Terms / IFS Master Terms)
+reconciled: true
+plan_count: 0
 tags:
   - ERP
   - EAM
   - Field Service
   - Enterprise Service Management
   - Industrial Software
-description: IFS sells industry-specific enterprise software (IFS Cloud ERP, EAM, FSM, ESM) through a
-  contact-sales motion. Pricing is not published and is negotiated per customer based on industry, modules,
-  user count, and deployment shape (cloud vs on-premises). The APIs underlying these products are part
-  of the licensed product and not separately metered. IFS announced in 2024 a move toward more accessible
-  enterprise pricing but specific rates remain undisclosed.
-notes: No public per-user or per-API pricing is published. All numeric prices below are 'contact sales'.
-sources:
-  - https://www.ifs.com/
-  - https://www.ifs.com/products/cloud
-plans:
-  - id: ifs-cloud
-    name: IFS Cloud
-    type: enterprise
-    description: Unified IFS Cloud platform covering ERP, EAM, FSM, and ESM. Sold via IFS Sales with a
-      negotiated contract; APIs are bundled with the product license.
-    entries:
-      - label: Subscription
-        description: Negotiated subscription covering modules and user count
-        name: subscription
-        type: subscription
-        metric: contract
-        limit: -1
-        timeFrame: year
-        geo: global
-        domains:
-          - https://api.ifs.com
-        unit: 1
-        price: contact sales
-        userMultiplied: false
-    elements:
-      - name: IFS Cloud ERP API
-      - name: IFS Field Service Management API
-      - name: IFS Enterprise Asset Management API
-      - name: IFS Enterprise Service Management API
-      - name: Industry-specific data models
-      - name: 24/7 enterprise support
-      - name: Customer Success Manager
+description: >-
+  IFS publishes NO pricing and NO plan tiers. IFS Cloud (ERP, EAM, FSM, ESM) is sold through a
+  contact-sales motion; commercial terms are negotiated per customer against the IFS Master
+  Terms and Product Terms, and the APIs are part of the licensed product rather than a
+  separately metered product with its own plans. There is no self-serve signup that yields
+  IFS Cloud API credentials — an IAM client must be registered by an administrator inside the
+  customer's own environment (see authentication/ifs-authentication.yml).
+notes: >-
+  plan_count is 0 because nothing is published, not because nothing was looked for. This
+  replaces an earlier bulk-sweep-generated file (method: generated, 2026-05-04) that carried
+  one invented "IFS Cloud / contact sales" tier attached to https://api.ifs.com; that tier was
+  not read from any IFS page and has been removed.
+evidence:
+  - url: https://www.ifs.com/en/pricing
+    status: 404
+  - url: https://www.ifs.com/en/legal
+    status: 200
+    note: Commercial terms index — IFS Master Terms, Product Terms, Country Localizations, SLA. No rates.
+  - url: https://www.ifs.com/
+    status: 200
+    note: Primary call to action across the site is "Book a demo" / contact sales.
+commercial_documents:
+  - title: IFS Master Terms / Master Agreement (July 2026)
+    url: https://ifs-p-001.sitecorecontenthub.cloud/api/public/content/master-agreement-July-2026.pdf?v=23a0e216
+  - title: IFS Product Terms (July 2026)
+    url: https://ifs-p-001.sitecorecontenthub.cloud/api/public/content/ifs_product_terms_july26-v2.pdf-52494b?v=7faf9fb6
+  - title: SLA for IFS Cloud Services (July 2026)
+    url: https://ifs-p-001.sitecorecontenthub.cloud/api/public/content/sla-ifs-cloud-services-july-2026.pdf?v=adb76b3b
+plans: []
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

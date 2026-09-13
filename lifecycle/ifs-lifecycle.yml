@@ -1,0 +1,156 @@
+generated: '2026-09-13'
+method: searched
+source: https://docs.ifs.com/policy/ (API Usage Policy for IFS Cloud) + https://docs.ifs.com/policy/DeprecationPolicy/ + https://developer.ifs.com/stories/api_diff + https://www.ifs.com/en/legal (IFS Cloud Services SLA)
+summary: >-
+  IFS publishes a genuine, approved, dated product policy set covering API classes, breaking
+  change communication, deprecation and removal, availability SLA and planned maintenance.
+  It does NOT publish a public status page, and the per-release deprecation log itself lives
+  in the IFS Community knowledge base behind an account.
+versioning:
+  scheme: release-update
+  pattern: YYRn (e.g. 26R1), with service updates between release updates
+  cadence: two release updates per year
+  current: 26R1
+  api_path_version: >-
+    The OData projection endpoint carries a path version segment — .../projection/v1/<Projection>.svc —
+    documented in IFS's own Script-A-Rest sample output.
+  policy: >-
+    "For all API classes our policy is to not make any breaking changes to APIs in service
+    updates. Any exceptions (e.g. if a breaking change is critical to fix a security
+    vulnerability) are documented with the release information for the service update.
+    Information about any breaking API changes in a release is included with the release
+    documentation at the point of Early Access (EA)."
+  source: https://docs.ifs.com/policy/APIUsageCloud.pdf
+api_classes:
+- name: Premium
+  visible_in_api_explorer: true
+  specs_published: OpenAPI v3, OpenAPI v2, OData
+  expectation: >-
+    Comprehensive documentation on appropriate use. IFS strives to maintain compatibility
+    across releases and to give early warning plus migration guidance for changes. New and
+    old versions of an API are considered to be kept in parallel for at least one release
+    when a breaking change is needed.
+  deprecation: Deprecated according to the general deprecation policy; deprecated status is shown in the API Explorer.
+- name: Standard
+  visible_in_api_explorer: true
+  specs_published: OpenAPI v3, OpenAPI v2, OData
+  expectation: A list of breaking API changes is provided with service and release updates.
+  deprecation: >-
+    Deprecation in advance of removal is typically NOT done for Standard APIs. They are not
+    removed in service updates; removals in release updates are reported with the release.
+- name: StandardEntity
+  visible_in_api_explorer: true
+  requires_admin_activation: true
+  specs_published: OpenAPI v3, OpenAPI v2, OData
+  expectation: >-
+    Allowed only for IFS Cloud configuration tools and system-to-system integration with
+    trusted systems. Reported defects are assigned priority 3 and addressed in a future
+    release update.
+- name: Deprecated
+  note: Any API, regardless of class, can additionally be marked Deprecated — planned for removal in a future release.
+deprecation_policy:
+  published: true
+  url: https://docs.ifs.com/policy/DeprecationPolicy/
+  document: https://docs.ifs.com/policy/DeprecationPolicy/DeprecationandRemoval-ProductPolicy.pdf
+  title: Deprecation and Removal — IFS Product Policy
+  updated: '2023-11-29'
+  valid_for: IFS Cloud 23R2 and subsequent updates
+  approver: RnD Senior Leadership Team
+  guarantee_window: >-
+    Features available in a release R remain available and functional in that release for
+    24 months from that release's general availability, and IFS intends supporting APIs and
+    data models to retain full compatibility over that period, except where impossible (high
+    severity faults, security vulnerabilities).
+  removal_rule: >-
+    A feature deprecated in release R (or in a service update of R) may be removed in R+1 or
+    later. Deprecated features stay fully supported until removed.
+  exceptions: >-
+    Features offered as limited access, alpha, beta or trial may be removed with no advance
+    deprecation notice.
+  darp: Each deprecated feature gets a Deprecation and Removal Plan (DARP) naming replacements or alternatives.
+  communication:
+  - channel: IFS Community knowledge base (IFS Cloud deprecation log), published at Early Access for each release
+    public: false
+    note: Requires an IFS Community account; not readable anonymously.
+  - channel: IFS Community deprecation announcement per release update
+    public: false
+  - channel: https://docs.ifs.com — deprecations that apply only to developers
+    public: true
+  sunset_headers:
+    rfc8594: false
+    note: No Deprecation or Sunset response header is documented for the IFS Cloud OData surface.
+breaking_change_reports:
+  url: https://developer.ifs.com/stories/api_diff
+  note: >-
+    IFS generates API diff / breaking-change workbooks just before each release and publishes
+    the cumulative latest version. Distributed as .xlsm workbooks — human-readable, not
+    machine-readable.
+  guide: https://developer.ifs.com/assets/pages/IFS_API_Breaking_Change_Categories_and_Impact_Analysis_Guide.pdf
+  latest:
+  - release: 26R1
+    url: https://developer.ifs.com/assets/pages/API_Breaking_Changes_26R1.xlsm
+  - release: 25R2
+    url: https://developer.ifs.com/assets/pages/API_Breaking_Changes_25R2.xlsm
+  - release: 25R1
+    url: https://developer.ifs.com/assets/pages/API_Breaking_Changes_25R1.xlsm
+  - release: 24R2
+    url: https://developer.ifs.com/assets/pages/API_Breaking_Changes_24R2.xlsm
+  between_releases:
+  - from_to: 25R2 GA to 26R1 GA
+    url: https://developer.ifs.com/assets/pages/API_Diff_25R2GA_to_26R1GA_.xlsm
+restricted_customization:
+  url: https://developer.ifs.com/stories/at_final
+  note: >-
+    IFS publishes a per-release report of entity/projection/component areas that customers
+    may not customize (Layered Application Architecture restrictions from 22R1 onward).
+sla:
+  published: true
+  document: https://ifs-p-001.sitecorecontenthub.cloud/api/public/content/sla-ifs-cloud-services-july-2026.pdf
+  index: https://www.ifs.com/en/legal
+  title: SLA for IFS Cloud Services (July 2026)
+  availability_target: 99.5% per Production Environment, measured over a calendar month
+  warranted: false
+  service_credits:
+  - shortfall: 0.5%–1% below target (99.00%–98.50%)
+    credit: 5% of monthly IFS Cloud Services fees
+  credit_application: Cumulative availability service credits are applied quarterly as a reduction to the next invoice.
+  termination_right: >-
+    If the availability target is missed for three consecutive calendar months in a contract
+    year and the customer was entitled to a credit, the customer may terminate on 90 days'
+    written notice given within 30 days of determining the failure.
+  exclusions: Scheduled downtime (planned maintenance, customer-initiated downtime, agreed additional windows, platform maintenance) is excluded from availability.
+  marketing_claim:
+    value: 99.99% cloud production service availability (rolling 90-day average)
+    source: https://www.ifs.com/en/about/trust-center
+    note: Marketing figure on the Trust Center; the contractual target in the SLA is 99.5%.
+planned_maintenance_policy:
+  published: true
+  document: https://ifs-p-001.sitecorecontenthub.cloud/api/public/content/planned-maintenance-policy-vjuly2026.pdf
+  index: https://www.ifs.com/en/legal
+support_policy:
+  document: https://ifs-p-001.sitecorecontenthub.cloud/api/public/content/ifs-support-policy.pdf
+  index: https://www.ifs.com/en/legal
+  api_support_note: >-
+    The API Usage Policy states plainly that support for HOW to use APIs is not covered by
+    most IFS support agreements — customers wanting help understanding correct API usage
+    must purchase such services separately.
+status_page:
+  published: false
+  probes:
+  - url: https://status.ifs.com/
+    status: 503
+  - url: https://trust.ifs.com/
+    status: 503
+  - url: https://ifs.statuspage.io/
+    status: 200
+    note: Redirects to https://ifs.statuspage.io/inactive — an inactive Statuspage placeholder, not a status page.
+  note: >-
+    No public status page was found. Environment health for IFS Cloud is surfaced to
+    customers inside Lifecycle Experience, not on an anonymous URL. No StatusPage pointer is
+    emitted.
+deprecated_operations:
+  derived_from_openapi: false
+  note: >-
+    Not derivable. IFS publishes OpenAPI v2/v3 per projection only from inside a customer's
+    own IFS Cloud environment via the API Explorer / $openapi, so no spec is available
+    anonymously to scan for `deprecated: true`.

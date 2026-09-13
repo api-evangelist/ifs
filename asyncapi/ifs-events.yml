@@ -1,0 +1,85 @@
+generated: '2026-09-13'
+method: searched
+source: https://docs.ifs.com/policy/APIUsageCloud.pdf + https://docs.ifs.com/techdocs/26r1/030_administration/030_integration/ + https://docs.ifs.com/techdocs/26r1/030_administration/030_integration/350_ifs_cloud_interoperability/
+asyncapi_spec_published: false
+note: >-
+  IFS publishes NO AsyncAPI document. It does document a real, first-party asynchronous
+  event and outbound-message surface, captured below as a webhook/event catalog. Nothing
+  here is fabricated — no event names or payload schemas are asserted, because IFS publishes
+  none anonymously; the event TYPE catalog lives inside a customer's own environment.
+surfaces:
+- id: ifs-connect-outbound
+  name: Events / Outbound messages (IFS Connect)
+  kind: outbound-messages
+  transport:
+  - HTTP
+  - FTP / SFTP
+  - Mail
+  - File
+  - REST
+  evidence: >-
+    The API Usage Policy for IFS Cloud lists, as one of the four API types,
+    "Events / Outbound messages — Access via: IFS Connect — Typical usage(s): Send
+    notifications; System integration; Initiate automation with IFS Cloud."
+  evidence_url: https://docs.ifs.com/policy/APIUsageCloud.pdf
+  configuration:
+    routing_rules: https://docs.ifs.com/techdocs/26r1/030_administration/030_integration/300_ifs_connect/030_routing_rules_addresses/
+    transport_connectors: https://docs.ifs.com/techdocs/26r1/030_administration/030_integration/300_ifs_connect/010_configure_connect/060_transport_connectors/
+    http_connector: https://docs.ifs.com/techdocs/26r1/030_administration/030_integration/300_ifs_connect/010_configure_connect/060_transport_connectors/configure_http_transport_connector/
+    message_queues: https://docs.ifs.com/techdocs/26r1/030_administration/030_integration/300_ifs_connect/070_message_queues/
+    envelopes: https://docs.ifs.com/techdocs/26r1/030_administration/030_integration/300_ifs_connect/065_envelopes/
+    transformers: https://docs.ifs.com/techdocs/26r1/030_administration/030_integration/300_ifs_connect/090_transformers/
+  delivery_note: >-
+    Outbound delivery is customer-configured: the customer defines routing rules and the
+    destination address, and picks the transport connector. There is no IFS-hosted webhook
+    registration API and no published signing scheme. HTTP delivery to a customer-nominated
+    endpoint is the webhook-equivalent.
+  event_catalog_public: false
+- id: ifs-cloud-interoperability
+  name: IFS Cloud Interoperability (IFS Cloud <-> IFS.ai)
+  kind: event-bus
+  standard: CloudEvents
+  evidence: >-
+    "With IFS Cloud Interoperability, IFS Cloud integrates seamlessly with the IFS.ai
+    platform using standardized CloudEvents and asynchronous messaging."
+  evidence_url: https://docs.ifs.com/techdocs/26r1/030_administration/030_integration/350_ifs_cloud_interoperability/
+  architecture:
+    inbound:
+      description: >-
+        The IFS.ai platform sends an event in CloudEvent format to an authenticated endpoint
+        routed through a proxy service. A Quarkus service named CloudEventReceiver validates
+        the request and checks the event type is registered, then enqueues the message to an
+        Oracle Advanced Queue (AQ). IFS Cloud components consume from the queue and act on it.
+      services:
+      - CloudEventReceiver (Quarkus)
+      queue: Oracle Advanced Queue (AQ)
+    outbound:
+      description: >-
+        Outbound messages are produced either by Oracle database triggers writing into an AQ
+        when specific tables change, or programmatically by IFS Cloud components on a business
+        event. A containerized CloudEventSender service reads the outbound queue, transforms
+        each message into a CloudEvent structure and sends it to the IFS.ai platform.
+      services:
+      - CloudEventSender
+      triggers:
+      - database-trigger
+      - application-driven-event
+  subscription_required: false
+  customer_facing: false
+  note: >-
+    This path is IFS-internal plumbing between IFS Cloud and the IFS.ai platform. It is
+    enabled automatically for the relevant product capabilities and requires no customer
+    subscription, but it is not an endpoint a third-party integrator subscribes to.
+- id: ifs-connectivity
+  name: IFS Connectivity
+  kind: table-based-integration
+  description: Input and output tables used for communication, and the base for platform replication.
+  evidence_url: https://docs.ifs.com/techdocs/26r1/030_administration/030_integration/310_connectivity/
+events: []
+channels: []
+schemas_published: false
+gaps:
+- No AsyncAPI document.
+- No anonymously readable catalog of IFS Cloud event types or payload schemas.
+- No published webhook signing / verification scheme.
+- No event replay or dead-letter semantics documented on a public surface.

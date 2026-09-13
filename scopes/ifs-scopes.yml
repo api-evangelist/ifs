@@ -1,23 +1,56 @@
-generated: '2026-07-11'
-method: derived
-source: openapi/ifs-cloud-erp-openapi.yml
+generated: '2026-09-13'
+method: searched
+source: https://docs.ifs.com/techdocs/26r1/030_administration/010_security/040_iam_settings/035_iam_clients/020_authenticate_external_integration/300_client_credential_flow/
+docs: https://docs.ifs.com/techdocs/26r1/030_administration/010_security/020_permission_sets/004_permission_set_overview/010_projections/
+supersedes:
+  previous_method: derived
+  previous_source: openapi/ifs-cloud-erp-openapi.yml
+  reason: >-
+    The previous derived file listed scopes `ifs.read` and `ifs.write` against
+    https://login.ifs.cloud/oauth2/authorize. That host does not resolve (DNS NXDOMAIN,
+    probed 2026-09-13) and IFS documents neither scope name. The values below are the ones
+    IFS publishes.
+summary: >-
+  IFS Cloud does NOT express API authorization as OAuth scopes. The OIDC token request
+  carries a fixed protocol scope set; what an integration is actually allowed to do is
+  decided by IFS Cloud permission sets and projection grants attached to the service user,
+  not by scope strings. Treat the scope list below as the complete published set — it is
+  short because the model is role-based, not scope-based.
+model: permission-sets
 schemes:
-- name: OAuth2
-  source: openapi/ifs-cloud-erp-openapi.yml
+- name: IFS IAM (OpenID Connect)
+  token_endpoint: https://<SYSTEM_URL>/auth/realms/<NAMESPACE>/protocol/openid-connect/token
   flows:
-  - flow: authorizationCode
-    authorizationUrl: https://login.ifs.cloud/oauth2/authorize
-    tokenUrl: https://login.ifs.cloud/oauth2/token
+  - clientCredentials
+  - authorizationCode
+  - authorizationCode+PKCE
+  - password
 scopes:
-- scope: ifs.read
-  description: Read IFS data
-  flows:
-  - authorizationCode
-  sources:
-  - openapi/ifs-cloud-erp-openapi.yml
-- scope: ifs.write
-  description: Write IFS data
-  flows:
-  - authorizationCode
-  sources:
-  - openapi/ifs-cloud-erp-openapi.yml
+- scope: openid
+  description: Standard OpenID Connect scope. Required on the token request for external integration clients.
+  required: true
+  flows: [clientCredentials, authorizationCode, authorizationCode+PKCE, password]
+  source: https://docs.ifs.com/techdocs/26r1/030_administration/010_security/040_iam_settings/035_iam_clients/020_authenticate_external_integration/300_client_credential_flow/
+- scope: microprofile-jwt
+  description: >-
+    Requests the MicroProfile JWT claim set IFS Cloud uses for role-based access. Required
+    alongside `openid` on the token request.
+  required: true
+  flows: [clientCredentials, authorizationCode, authorizationCode+PKCE, password]
+  source: https://docs.ifs.com/techdocs/26r1/030_administration/010_security/040_iam_settings/035_iam_clients/020_authenticate_external_integration/300_client_credential_flow/
+scopes_returned_in_token:
+  observed: openid audience microprofile-jwt email profile
+  note: >-
+    The scope string IFS shows in its documented sample token response. `audience`, `email`
+    and `profile` are returned by the authorization server; only `openid microprofile-jwt`
+    is documented as required on the request.
+authorization_beyond_scopes:
+- mechanism: Permission sets
+  description: Projection grants, per-page and per-navigator grants, and per-projection access levels granted to the user or service user.
+  docs: https://docs.ifs.com/techdocs/26r1/030_administration/010_security/020_permission_sets/011_creating_permission_sets/010_projections/
+- mechanism: Access Control Lists (ACL)
+  description: ACLs applied at projection level; projections can also be excluded outright.
+  docs: https://docs.ifs.com/techdocs/26r1/030_administration/010_security/008_data_access_control/020_apply_acl_to_projection/
+- mechanism: StandardEntity activation
+  description: StandardEntity-class APIs require explicit activation by a system administrator before they can be used at all.
+  docs: https://docs.ifs.com/policy/APIUsageCloud.pdf

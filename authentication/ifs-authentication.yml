@@ -1,18 +1,93 @@
-generated: '2026-07-11'
-method: derived
-source: openapi/ifs-cloud-erp-openapi.yml
+generated: '2026-09-13'
+method: searched
+source: https://docs.ifs.com/techdocs/26r1/030_administration/010_security/040_iam_settings/035_iam_clients/020_authenticate_external_integration/
+supersedes:
+  previous_method: derived
+  previous_source: openapi/ifs-cloud-erp-openapi.yml
+  reason: >-
+    The previous derived profile named authorizationUrl https://login.ifs.cloud/oauth2/authorize
+    and tokenUrl https://login.ifs.cloud/oauth2/token. That host does not resolve (DNS
+    NXDOMAIN, probed 2026-09-13) and IFS does not document it anywhere. The endpoints below
+    are the ones IFS publishes in its own technical documentation.
 summary:
   types:
   - oauth2
+  - openIdConnect
   oauth2_flows:
   - authorizationCode
+  - authorizationCode+PKCE
+  - clientCredentials
+  - password
+  identity_provider: IFS Identity and Access Manager (IFS IAM) — a Keycloak-shaped OIDC authorization server embedded in the IFS Cloud platform
+  tenancy: >-
+    Every endpoint is tenant-relative. IFS Cloud is deployed per customer, so the host is
+    the customer's own IFS Cloud system URL and the realm is that system's namespace.
+    There is no shared, anonymously reachable IFS authorization server.
 schemes:
-- name: OAuth2
-  type: oauth2
+- name: IFS IAM (OpenID Connect)
+  type: openIdConnect
+  token_endpoint: https://<SYSTEM_URL>/auth/realms/<NAMESPACE>/protocol/openid-connect/token
+  token_type: Bearer
+  token_format: JWT (microprofile-jwt)
+  required_scope: openid microprofile-jwt
+  token_response_fields:
+  - access_token
+  - expires_in
+  - refresh_expires_in
+  - refresh_token
+  - token_type
+  - id_token
+  - not-before-policy
+  - session_state
+  - scope
+  observed_token_lifetime:
+    access_token_expires_in: 180
+    refresh_expires_in: 1800
+    note: Values shown in IFS's own documented sample response; actual lifetimes are configured per IAM client.
   flows:
+  - flow: clientCredentials
+    use: >-
+      Applications that cannot render a browser and do not need end-user accounts. Yields an
+      access token for a service user associated with the IAM client itself. Client ID and
+      client secret act as the username and password of the integrating application.
+    parameters:
+      grant_type: client_credentials
+      scope: openid microprofile-jwt
+      client_id: Client ID of the IFS IAM client
+      client_secret: Client secret of the IFS IAM client
+    docs: https://docs.ifs.com/techdocs/26r1/030_administration/010_security/040_iam_settings/035_iam_clients/020_authenticate_external_integration/300_client_credential_flow/
   - flow: authorizationCode
-    authorizationUrl: https://login.ifs.cloud/oauth2/authorize
-    tokenUrl: https://login.ifs.cloud/oauth2/token
-    scopes: 2
-  sources:
-  - openapi/ifs-cloud-erp-openapi.yml
+    docs: https://docs.ifs.com/techdocs/26r1/030_administration/010_security/040_iam_settings/035_iam_clients/020_authenticate_external_integration/100_authorization_code_flow/
+  - flow: authorizationCode+PKCE
+    docs: https://docs.ifs.com/techdocs/26r1/030_administration/010_security/040_iam_settings/035_iam_clients/020_authenticate_external_integration/200_authorization_code_flow_pkce/
+  - flow: password
+    name: Resource Owner Password Credentials
+    docs: https://docs.ifs.com/techdocs/26r1/030_administration/010_security/040_iam_settings/035_iam_clients/020_authenticate_external_integration/400_resource_owner_pw_credentials/
+    caution: Legacy flow; IFS documents it but OAuth 2.1 removes it.
+- name: Basic authentication
+  type: http
+  scheme: basic
+  status: legacy-not-for-integrations
+  note: >-
+    "In IFS Cloud the authentication mechanism is independent from the main/int endpoints
+    ('Compatibility mode' that was available in Apps 10 is no longer available). In other
+    words, basic authentication is available in both end points but only for ease of
+    upgrade. That means basic authentication is not for the consumption of integrations."
+  docs: https://docs.ifs.com/techdocs/26r1/030_administration/010_security/040_iam_settings/035_iam_clients/020_authenticate_external_integration/500_basic_authentication_flow/
+client_registration:
+  where: IFS Cloud > Solution Manager > Security > Identity and Access Manager > IAM Client Details
+  self_serve: false
+  note: >-
+    A custom IAM client must be registered inside the customer's own IFS Cloud environment by
+    an administrator before an access token can be obtained. There is no public developer
+    signup that yields IFS Cloud API credentials.
+authorization:
+  model: permission sets
+  note: >-
+    Access to a projection and its entity sets is granted through IFS Cloud permission sets
+    (projection grants, per-projection access levels), plus Access Control Lists applied at
+    projection level. StandardEntity-class APIs additionally require activation by a system
+    administrator before use.
+  docs: https://docs.ifs.com/techdocs/26r1/030_administration/010_security/020_permission_sets/004_permission_set_overview/010_projections/
+auditing:
+  docs: https://docs.ifs.com/techdocs/26r1/030_administration/010_security/040_iam_settings/080_authentication_auditing/

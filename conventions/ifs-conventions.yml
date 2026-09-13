@@ -1,0 +1,150 @@
+generated: '2026-09-13'
+method: searched
+source: https://docs.ifs.com/policy/APIUsageCloud.pdf + https://docs.ifs.com/techdocs/26r1/040_tailoring/300_extensibility/020_api_explorer/ + https://docs.ifs.com/techdocs/26r1/060_development/050_development_tools/150_script_a_rest/
+note: >-
+  Derived from IFS's own published documentation, NOT from any OpenAPI in this repository.
+  IFS Cloud APIs are OData v4 projection services, so most cross-cutting semantics are the
+  OData ones; only the behaviour IFS itself documents is recorded here.
+interface_style: rest-odata
+base_url:
+  shape: https://<system-url>/main/ifsapplications/projection/v1/<Projection>.svc
+  templated: true
+  evidence: >-
+    IFS's Script-A-Rest documentation shows a real response whose @odata.context is
+    https://ifscloudenvironment.com:48080/main/ifsapplications/projection/v1/DockCodesHandling.svc/$metadata#PurchaseDockCodes/$entity
+  evidence_url: https://docs.ifs.com/techdocs/26r1/060_development/050_development_tools/150_script_a_rest/
+  note: >-
+    The host is the customer's own IFS Cloud environment. There is no shared IFS-operated
+    API host; api.ifs.com resolves but returns 503 on every path and is not documented by IFS.
+auth:
+  style: OAuth 2.0 bearer token (JWT) from IFS IAM
+  header: 'Authorization: Bearer <access_token>'
+  see: authentication/ifs-authentication.yml
+methods:
+  documented:
+  - GET
+  - POST
+  - PUT
+  - PATCH
+  - DELETE
+  evidence: >-
+    "These are easy to use REST APIs following the Open Data Protocol (OData) standard and
+    standard HTTP methods (GET, POST, PUT, PATCH, DELETE) are used to call the APIs."
+  evidence_url: https://docs.ifs.com/techdocs/26r1/040_tailoring/300_extensibility/020_api_explorer/
+discovery:
+  service_document: <Projection>.svc/
+  metadata: <Projection>.svc/$metadata
+  openapi_v3: available per projection from the API Explorer inside the customer environment
+  openapi_v2: available per projection from the API Explorer inside the customer environment
+  api_explorer: >-
+    In-product page listing every projection / OData service and its entity sets, with
+    OpenAPI v2, OpenAPI v3, OData service document and IFS REST API documentation per
+    service. Business Objects related projections are not shown.
+  note: Discovery is authenticated and tenant-local. Nothing is discoverable anonymously.
+pagination:
+  style: odata-system-query-options
+  params:
+  - $top
+  - $skip
+  note: OData v4 server-driven and client-driven paging. No cursor or link-header scheme is documented by IFS.
+filtering:
+  params:
+  - $filter
+  - $select
+  - $orderby
+  - $expand
+  note: Standard OData v4 system query options on projection entity sets.
+concurrency:
+  mechanism: odata-etag
+  evidence: >-
+    IFS's documented sample response carries an @odata.etag
+    (W/"Vy8iQUFDSU1HQUFGQUFCcElIQUFBOjIwMTkxMDMxMTMyNDAwIg==") on the created entity.
+  evidence_url: https://docs.ifs.com/techdocs/26r1/060_development/050_development_tools/150_script_a_rest/
+  note: >-
+    OData optimistic concurrency via If-Match. This protects against LOST UPDATES; it is not
+    replay protection and does not make a write idempotent.
+idempotency:
+  coverage: none
+  mechanism: null
+  header: null
+  scope: []
+  note: >-
+    No Idempotency-Key header, request-id replay window, or equivalent is documented for the
+    IFS Cloud OData surface. A retried POST to a projection entity set will attempt a second
+    create. The only related control IFS documents is OData ETag / If-Match optimistic
+    concurrency, which is a different guarantee.
+  evidence: >-
+    Searched the API Usage Policy, the API Explorer / inbound REST integration page and the
+    Script-A-Rest reference; none mentions idempotency or replay protection.
+reversibility:
+  grade: na
+  applies: partial
+  note: >-
+    IFS Cloud APIs absolutely have a write surface (POST/PUT/PATCH/DELETE on projection
+    entity sets), so reversibility is NOT na for the product. It is recorded as `na` here
+    because no reversal operation and no reversal WINDOW can be honestly stated: the
+    projection catalog, its operationIds and any cancel/reverse/void actions live inside a
+    customer's own environment behind the API Explorer, and IFS publishes no anonymous
+    reference for them. Business-level reversals in IFS Cloud (voiding a voucher, cancelling
+    a purchase order, reversing a work order) are application functions governed by the
+    customer's own configuration and accounting period rules, not by a documented API window.
+  reversal_operations: []
+  windows: []
+  warning: >-
+    Do NOT assert a reversal window for IFS from the documentation available anonymously.
+    None is stated.
+dry_run_mode:
+  supported: unknown
+  note: No dry-run / preview / validate-only mode is documented on an anonymous surface.
+expansion:
+  supported: true
+  param: $expand
+  note: Navigation properties are expanded with the OData $expand option.
+metadata_fields:
+  observed_in_responses:
+  - '@odata.context'
+  - '@odata.etag'
+  - luname
+  - keyref
+  - Objgrants
+  note: >-
+    `luname`, `keyref` and `Objgrants` are IFS-specific envelope fields returned alongside
+    the OData annotations, observed in IFS's own documented sample response.
+custom_fields:
+  supported: true
+  note: Custom Fields defined in IFS Cloud are accessible through the IFS Cloud APIs.
+  evidence_url: https://docs.ifs.com/techdocs/26r1/040_tailoring/300_extensibility/020_api_explorer/
+granularity:
+  note: >-
+    IFS documents that "Standard" class APIs are ATOMIC — a structured inbound message must
+    be split into several calls by a service bus or middleware. This is a real integration
+    constraint for an agent: composite business transactions are not single calls.
+  evidence_url: https://docs.ifs.com/techdocs/26r1/040_tailoring/300_extensibility/020_api_explorer/
+versioning:
+  path_segment: /v1/ in the projection URL
+  product_versioning: IFS Cloud release updates YYRn, twice yearly
+  see: lifecycle/ifs-lifecycle.yml
+errors:
+  envelope: OData error payload
+  rfc9457: false
+  status_codes_observed:
+  - 201
+  note: >-
+    No published error-code reference was found on an anonymous IFS surface, so no
+    errors/ artifact is written rather than one being invented. See
+    conformance/ifs-conformance.yml.
+rate_limit_signaling:
+  headers: []
+  note: >-
+    No rate-limit response headers are documented. See rate-limits/ifs-rate-limits.yml —
+    throughput is governed by the customer's contracted environment sizing.
+request_tracing:
+  header: null
+  note: No request-id / correlation-id header is documented for the OData surface.
+cross_links:
+  authentication: authentication/ifs-authentication.yml
+  scopes: scopes/ifs-scopes.yml
+  lifecycle: lifecycle/ifs-lifecycle.yml
+  conformance: conformance/ifs-conformance.yml
+  rate_limits: rate-limits/ifs-rate-limits.yml
+  events: asyncapi/ifs-events.yml

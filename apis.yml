@@ -1,5 +1,26 @@
 aid: ifs
 url: https://raw.githubusercontent.com/api-evangelist/ifs/refs/heads/main/apis.yml
+name: IFS
+description: >-
+  IFS is a global enterprise software company providing cloud ERP, enterprise asset management, field
+  service management, and enterprise service management platforms. APIs enable integration with IFS Cloud
+  across manufacturing, energy, aerospace, defense, and service industries. IFS is headquartered in Linköping,
+  Sweden with operations in over 90 countries.
+image: https://ifs-p-001.sitecorecontenthub.cloud/api/public/content/ifs-logo.png-e018c7?v=ec7c2a48
+tags:
+- ERP
+- Field Service
+- Asset Management
+- Manufacturing
+- Energy
+- Cloud
+- Sweden
+created: '2026-05-04'
+modified: '2026-09-13'
+specificationVersion: '0.23'
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
 deliveryModel:
   model: unknown
   open_source: false
@@ -11,7 +32,19 @@ deliveryModel:
   - openapi
   generated: '2026-08-28'
   method: derived
-specificationVersion: '0.23'
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 apis:
 - aid: ifs:ifs-field-service-management-api
   name: IFS Field Service Management API
@@ -27,15 +60,20 @@ apis:
   - Mobile
   - Scheduling
   - Work Order
-  humanURL: https://www.ifs.com/
-  baseURL: https://api.ifs.com
+  humanURL: https://docs.ifs.com/techdocs/26r1/040_tailoring/300_extensibility/020_api_explorer/
+  baseURL: https://{system-url}/main/ifsapplications/projection/v1
   properties:
-  - url: https://www.ifs.com/
+  - url: https://docs.ifs.com/
     type: Documentation
+  - type: APIReference
+    url: https://docs.ifs.com/techdocs/26r1/040_tailoring/300_extensibility/020_api_explorer/
+  - type: Authentication
+    url: authentication/ifs-authentication.yml
   description: >-
     IFS Field Service Management APIs enable work order management, scheduling optimization, technician
     dispatch, parts inventory, and mobile workforce coordination for energy, manufacturing, and telecom
     field service operations.
+  image: https://ifs-p-001.sitecorecontenthub.cloud/api/public/content/ifs-logo.png-e018c7?v=ec7c2a48
 - aid: ifs:ifs-enterprise-asset-management-api
   name: IFS Enterprise Asset Management API
   tags:
@@ -44,15 +82,20 @@ apis:
   - Energy
   - Maintenance
   - Manufacturing
-  humanURL: https://www.ifs.com/
-  baseURL: https://api.ifs.com
+  humanURL: https://docs.ifs.com/techdocs/26r1/040_tailoring/300_extensibility/020_api_explorer/
+  baseURL: https://{system-url}/main/ifsapplications/projection/v1
   properties:
-  - url: https://www.ifs.com/
+  - url: https://docs.ifs.com/
     type: Documentation
+  - type: APIReference
+    url: https://docs.ifs.com/techdocs/26r1/040_tailoring/300_extensibility/020_api_explorer/
+  - type: Authentication
+    url: authentication/ifs-authentication.yml
   description: >-
     IFS Enterprise Asset Management APIs provide integration with asset lifecycle management, maintenance
     planning, work order execution, and predictive maintenance workflows for industrial and infrastructure
     asset-intensive organizations.
+  image: https://ifs-p-001.sitecorecontenthub.cloud/api/public/content/ifs-logo.png-e018c7?v=ec7c2a48
 - aid: ifs:ifs-enterprise-service-management-api
   name: IFS Enterprise Service Management API
   tags:
@@ -65,62 +108,87 @@ apis:
   - Helpdesk
   - ITSM
   - Service Management
-  humanURL: https://www.ifs.com/
-  baseURL: https://api.ifs.com
+  humanURL: https://docs.ifs.com/techdocs/26r1/040_tailoring/300_extensibility/020_api_explorer/
+  baseURL: https://{system-url}/main/ifsapplications/projection/v1
   properties:
-  - url: https://www.ifs.com/
+  - url: https://docs.ifs.com/
     type: Documentation
+  - type: APIReference
+    url: https://docs.ifs.com/techdocs/26r1/040_tailoring/300_extensibility/020_api_explorer/
+  - type: Authentication
+    url: authentication/ifs-authentication.yml
   description: >-
     IFS Enterprise Service Management APIs enable IT service management, service catalog, incident management,
     and CMDB integration for enterprise IT and shared service organizations using the IFS Cloud platform.
+  image: https://ifs-p-001.sitecorecontenthub.cloud/api/public/content/ifs-logo.png-e018c7?v=ec7c2a48
 - aid: ifs:ifs-finance-api
   name: IFS Finance API
   description: General ledger, vouchers, and financial entities
-  humanURL: https://www.ifs.com/
-  baseURL: https://api.ifs.com
+  humanURL: https://docs.ifs.com/techdocs/26r1/040_tailoring/300_extensibility/020_api_explorer/
+  baseURL: https://{system-url}/main/ifsapplications/projection/v1
   tags:
   - Finance
   properties:
   - type: OpenAPI
     url: openapi/ifs-finance-api-openapi.yml
   - type: Documentation
-    url: https://www.ifs.com/
+    url: https://docs.ifs.com/
+  - type: APIReference
+    url: https://docs.ifs.com/techdocs/26r1/040_tailoring/300_extensibility/020_api_explorer/
+  - type: Authentication
+    url: authentication/ifs-authentication.yml
+  image: https://ifs-p-001.sitecorecontenthub.cloud/api/public/content/ifs-logo.png-e018c7?v=ec7c2a48
 - aid: ifs:ifs-inventory-api
   name: IFS Inventory API
   description: Parts and inventory management
-  humanURL: https://www.ifs.com/
-  baseURL: https://api.ifs.com
+  humanURL: https://docs.ifs.com/techdocs/26r1/040_tailoring/300_extensibility/020_api_explorer/
+  baseURL: https://{system-url}/main/ifsapplications/projection/v1
   tags:
   - Inventory
   properties:
   - type: OpenAPI
     url: openapi/ifs-inventory-api-openapi.yml
   - type: Documentation
-    url: https://www.ifs.com/
+    url: https://docs.ifs.com/
+  - type: APIReference
+    url: https://docs.ifs.com/techdocs/26r1/040_tailoring/300_extensibility/020_api_explorer/
+  - type: Authentication
+    url: authentication/ifs-authentication.yml
+  image: https://ifs-p-001.sitecorecontenthub.cloud/api/public/content/ifs-logo.png-e018c7?v=ec7c2a48
 - aid: ifs:ifs-procurement-api
   name: IFS Procurement API
   description: Purchase orders and supplier management
-  humanURL: https://www.ifs.com/
-  baseURL: https://api.ifs.com
+  humanURL: https://docs.ifs.com/techdocs/26r1/040_tailoring/300_extensibility/020_api_explorer/
+  baseURL: https://{system-url}/main/ifsapplications/projection/v1
   tags:
   - Procurement
   properties:
   - type: OpenAPI
     url: openapi/ifs-procurement-api-openapi.yml
   - type: Documentation
-    url: https://www.ifs.com/
+    url: https://docs.ifs.com/
+  - type: APIReference
+    url: https://docs.ifs.com/techdocs/26r1/040_tailoring/300_extensibility/020_api_explorer/
+  - type: Authentication
+    url: authentication/ifs-authentication.yml
+  image: https://ifs-p-001.sitecorecontenthub.cloud/api/public/content/ifs-logo.png-e018c7?v=ec7c2a48
 - aid: ifs:ifs-work-orders-api
   name: IFS Work Orders API
   description: Maintenance work orders and job management
-  humanURL: https://www.ifs.com/
-  baseURL: https://api.ifs.com
+  humanURL: https://docs.ifs.com/techdocs/26r1/040_tailoring/300_extensibility/020_api_explorer/
+  baseURL: https://{system-url}/main/ifsapplications/projection/v1
   tags:
   - Work Orders
   properties:
   - type: OpenAPI
     url: openapi/ifs-work-orders-api-openapi.yml
   - type: Documentation
-    url: https://www.ifs.com/
+    url: https://docs.ifs.com/
+  - type: APIReference
+    url: https://docs.ifs.com/techdocs/26r1/040_tailoring/300_extensibility/020_api_explorer/
+  - type: Authentication
+    url: authentication/ifs-authentication.yml
+  image: https://ifs-p-001.sitecorecontenthub.cloud/api/public/content/ifs-logo.png-e018c7?v=ec7c2a48
 common:
 - type: AgenticAccess
   url: agentic-access/ifs-agentic-access.yml
@@ -134,50 +202,73 @@ common:
   url: https://www.linkedin.com/company/ifs
 - url: https://blog.ifs.com/feed/
   type: Blog
-name: IFS
-description: >-
-  IFS is a global enterprise software company providing cloud ERP, enterprise asset
-  management, field service management, and enterprise service management platforms.
-  APIs enable integration with IFS Cloud across manufacturing, energy, aerospace,
-  defense, and service industries. IFS is headquartered in Linköping, Sweden with
-  operations in over 90 countries.
-accessModel:
-  pricing: unknown
-  onboarding: self-serve
-  trial: false
-  try_now: false
-  public: false
-  label: Self-serve signup
-  confidence: high
-  source:
-  - plans
-  - authentication
-  generated: '2026-07-22'
-  method: derived
-tags:
-- ERP
-- Field Service
-- Asset Management
-- Manufacturing
-- Energy
-- Cloud
-- Sweden
-properties:
-- url: https://www.ifs.com/
-  type: Portal
-- url: https://www.ifs.com/
-  type: Documentation
-- url: https://www.ifs.com/
-  type: Website
-- url: https://www.ifs.com/
-  type: Support
-- url: openapi/ifs-cloud-erp-openapi.yml
-  type: OpenAPI
-- url: json-schema/ifs-work-order-schema.json
-  type: JSONSchema
-- url: json-ld/ifs-context.jsonld
-  type: JSONLDContext
-maintainer:
-  name: Kin Lane
-  email: kin@apievangelist.com
-modified: '2026-04-28'
+- type: Website
+  url: https://www.ifs.com/
+- type: Portal
+  url: https://developer.ifs.com/
+- type: DeveloperPortal
+  url: https://developer.ifs.com/
+- type: Documentation
+  url: https://docs.ifs.com/
+- type: APIReference
+  url: https://docs.ifs.com/techdocs/26r1/040_tailoring/300_extensibility/020_api_explorer/
+- type: GettingStarted
+  url: https://docs.ifs.com/techdocs/26r1/040_tailoring/300_extensibility/010_get_started/
+- type: Support
+  url: https://community.ifs.com/
+- type: Community
+  url: https://community.ifs.com/
+- type: TermsOfService
+  url: https://www.ifs.com/en/legal
+- type: PrivacyPolicy
+  url: https://www.ifs.com/en/legal/privacy
+- type: TrustCenter
+  url: https://www.ifs.com/en/about/trust-center
+- type: Deprecation
+  url: https://docs.ifs.com/policy/DeprecationPolicy/
+- type: JSONSchema
+  url: json-schema/ifs-work-order-schema.json
+- type: JSONLDContext
+  url: json-ld/ifs-context.jsonld
+- type: SpectralRules
+  url: rules/ifs-jsonschema-spectral-rules.yml
+- type: Packages
+  url: packages/ifs-packages.yml
+- type: CLI
+  url: cli/ifs-cli.yml
+- type: ChangeLog
+  url: changelog/ifs-changelog.yml
+- type: Lifecycle
+  url: lifecycle/ifs-lifecycle.yml
+- type: Conformance
+  url: conformance/ifs-conformance.yml
+- type: Compliance
+  url: security/ifs-trust-center.yml
+- type: Conventions
+  url: conventions/ifs-conventions.yml
+- type: Webhooks
+  url: asyncapi/ifs-events.yml
+- type: LLMsTxt
+  url: llms/ifs-llms.txt
+- type: RateLimits
+  url: rate-limits/ifs-rate-limits.yml
+- type: Plans
+  url: plans/ifs-plans-pricing.yml
+x-api-base:
+  note: >-
+    apis[].baseURL was https://api.ifs.com on all seven entries. That host resolves (193.41.170.171) but
+    returns HTTP 503 for every path, and IFS documents it nowhere. IFS Cloud APIs are OData v4 projection
+    services hosted in each customer's own environment; the documented endpoint shape is https://<system-url>/main/ifsapplications/projection/v1/<Projection>.svc,
+    evidenced by the @odata.context in IFS's own Script-A-Rest sample response. The templated base is
+    recorded instead of a host that does not serve.
+  evidence:
+  - url: https://api.ifs.com/
+    status: 503
+  - url: https://docs.ifs.com/techdocs/26r1/060_development/050_development_tools/150_script_a_rest/
+    status: 200
+  checked: '2026-09-13'
+x-enrichment:
+  date: '2026-09-13'
+  status: enriched
+  artifacts_added: 10
+  pass: local-v3

@@ -1,0 +1,110 @@
+generated: '2026-09-13'
+method: searched
+source: https://developer.ifs.com/ (news feed, assets/news-items.json) + https://docs.ifs.com/ (release version switcher)
+scheme:
+  product_releases:
+    name: IFS Cloud release updates
+    pattern: YYRn
+    cadence: twice per year (R1 and R2)
+    current: 26R1
+    supported_on_docs_site:
+    - 24R1
+    - 24R2
+    - 25R1
+    - 25R2
+    - 26R1
+    note: >-
+      IFS Cloud ships two release updates a year plus service updates between them. Policy
+      (docs.ifs.com/policy/APIUsageCloud.pdf) is that no breaking API change is made in a
+      service update; breaking changes in a release update are published with the release
+      information at Early Access, and cumulatively in the API diff workbooks listed in
+      lifecycle/ifs-lifecycle.yml.
+  developer_tools:
+    name: IFS developer tool releases
+    note: >-
+      Dated per-tool announcements on the developer portal. This is the only dated,
+      machine-readable changelog IFS publishes on an anonymous surface; the IFS Cloud
+      product release notes and the deprecation log live in the IFS Community knowledge
+      base, which requires an account.
+  version_current: 26R1
+breaking_changes_channel: https://developer.ifs.com/stories/api_diff
+entries:
+- date: '2026-09-02'
+  component: IFS Lobby Analyzer
+  version: '1.8'
+  breaking: false
+  highlights:
+  - Tool no longer stops scanning when a datasource connection closes unexpectedly during heavy queries; it recovers and continues with the remaining datasources.
+- date: '2026-08-19'
+  component: IFS Developer Studio
+  version: 18 (v26.1.1220)
+  breaking: false
+  highlights:
+  - Available through Update Center only.
+- date: '2026-08-19'
+  component: IFS Lobby Analyzer
+  version: '1.7'
+  breaking: false
+  highlights:
+  - Fixes for Lobby Datasource analysis falsely failing with Oracle errors (date-format mismatches, NUMBER passed where DATE expected, PL/SQL calls with wrong argument count or types).
+- date: '2026-07-27'
+  component: IFS Script-A-Rest
+  version: 3.0.0
+  breaking: false
+  highlights:
+  - Scripting of IFS Cloud functionality through the IFS Cloud RESTful APIs.
+- date: '2026-06-22'
+  component: IFS Script-A-Rest
+  version: 2.6.0
+  breaking: false
+- date: '2026-06-19'
+  component: IFS Developer Studio
+  version: 18 (v26.1.1164)
+  breaking: false
+- date: '2026-06-09'
+  component: IFS Cloud Development Kit (VS Code)
+  version: 0.0.9
+  breaking: false
+  highlights:
+  - Early-preview VS Code extension; marketplace lastUpdated date.
+- date: '2026-05-31'
+  component: IFS Developer Studio
+  version: 18 (v26.1.1145)
+  breaking: false
+- date: '2026-04-20'
+  component: IFS Developer Studio
+  version: 18 (v26.1.1113)
+  breaking: false
+- date: '2026-04-07'
+  component: IFS Developer Studio
+  version: 18 (v26.1.1095)
+  breaking: false
+- date: '2026-03-25'
+  component: IFS Cloud Development Kit (VS Code)
+  version: preview
+  breaking: false
+  highlights:
+  - Announced in early preview (beta); not generally available and not recommended for production use.
+- date: '2026-03-04'
+  component: IFS Developer Studio
+  version: 18 (v25.2.1048)
+  breaking: false
+- date: '2026-03-04'
+  component: IFS Configuration Analyzer
+  version: IFR file update
+  breaking: false
+  highlights:
+  - Interface Reports updated for APPS10 UPD30.
+- date: '2026-02-27'
+  component: IFS Script-A-Rest
+  version: 2.5.0
+  breaking: false
+- date: '2025-12-15'
+  component: IFS Script-A-Rest
+  version: 2.4.0
+  breaking: false
+window:
+  from: '2025-12-15'
+  to: '2026-09-02'
+  entries_in_feed: 80
+  note: Recent window only; the portal feed carries 80 dated items going back several years.

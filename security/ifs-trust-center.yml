@@ -1,0 +1,89 @@
+generated: '2026-09-13'
+method: searched
+source: https://www.ifs.com/en/about/trust-center
+name: IFS Trust Center
+url: https://www.ifs.com/en/about/trust-center
+http_status: 200
+summary: >-
+  IFS publishes a Trust Center covering certifications and audits, product and service
+  security, customer information security, cloud security and privacy. It names its
+  certifications explicitly and links downloadable certificates and control documents.
+sections:
+- Certifications & audits
+- Security built through trust
+- Customer information security
+- Customer security in the cloud
+- Keeping your data private
+certifications:
+- name: ISO/IEC 27001:2013 Information Security Management
+  scope: IFS Cloud and IFS Success services
+  documents:
+  - title: ISO 27001 Certificate (valid to 2026-10-17)
+    url: https://ifs-p-001.sitecorecontenthub.cloud/api/public/content/iso_27001_2022_ifs_is_725861_exp_2026_10_17.pdf-8500b7?v=1adf1732
+  - title: ISO 27001 cloud Statement of Applicability
+    url: https://ifs-p-001.sitecorecontenthub.cloud/api/public/content/ifs_isms_iso_27001_2022_soa_external.pdf-a63421?v=05db1b4a
+- name: SOC 1 Type II
+  standard: SSAE18 / ISAE 3402
+  scope: IFS Cloud and IFS Success services
+  documents:
+  - title: Info on SOC report
+    url: https://ifs-p-001.sitecorecontenthub.cloud/api/public/content/ifs-soc-reporting-summary.pdf-082b81?v=eb27d8f9
+- name: SOC 2 Type II
+  standard: AICPA / ISAE 3000
+  scope: IFS Cloud and IFS Success services
+  criteria:
+  - security
+  - availability
+  - confidentiality
+  - privacy
+- name: ISO 9001
+  documents:
+  - title: ISO 9001 (UK, 2023)
+    url: https://ifs-p-001.sitecorecontenthub.cloud/api/public/content/ifs_uk_iso9001_certificate_2023.pdf-0c5ceb?v=a0d178d4
+- name: TickIT Plus
+  documents:
+  - title: TickIT Plus certificate (UK, 2023)
+    url: https://ifs-p-001.sitecorecontenthub.cloud/api/public/content/ifs_uk_tickitplus_certificate_2023.pdf-aaa4a9?v=63d9b7ee
+frameworks_referenced:
+- ISO 27001
+- NIST SP 800-171
+- SSAE18 / ISAE 3402 / ISAE 3000
+documents:
+- title: IFS certifications fact sheet
+  url: https://ifs-p-001.sitecorecontenthub.cloud/api/public/content/ifs_fact_sheet_ifs_certifications.pdf-696480?v=1dac0e46
+- title: IFS information security fact sheet
+  url: https://ifs-p-001.sitecorecontenthub.cloud/api/public/content/ifs_fact_sheet_information_security_8_2021.pdf-4daa02?v=e4d56ad7
+- title: IFS information security internal controls
+  url: https://ifs-p-001.sitecorecontenthub.cloud/api/public/content/ifs-information-security-internal-controls.pdf-44a3a0?v=1232293b
+- title: IFS Cloud service controls (white paper)
+  url: https://ifs-p-001.sitecorecontenthub.cloud/api/public/content/ifs_wp_ifs-cloud-service-controls_11_25_2.pdf-9f5aa7?v=a4a8d0e2
+- title: Information security requirements for third-party suppliers
+  url: https://ifs-p-001.sitecorecontenthub.cloud/api/public/content/ifs-information-security-requirements-for-third-party-suppliers.pdf-cfdb64?v=907a0908
+- title: IFS ESM (assyst) service controls
+  url: https://ifs-p-001.sitecorecontenthub.cloud/api/public/content/ifs-esm-assyst-service-controls.pdf-feff36?v=ad4729e0
+security_practices_stated:
+- Secure Product Development Lifecycle (SPDLC) with routine vulnerability testing throughout development
+- Security Operations Center (SOC) with conventional and AI-based monitoring tooling
+- Regular penetration testing of platform and network
+- Segregation of environments, formal change management, independent test and validation, controlled release and distribution
+- Least-privilege access control for users, partners and suppliers
+- Formal supplier management process with periodic certification review
+privacy:
+  gdpr: true
+  documents:
+  - title: Data Processing Addendum (and NIS2 / EURA amendments)
+    url: https://www.ifs.com/en/legal
+  - title: IFS List of Sub-Processors
+    url: https://www.ifs.com/en/legal
+  - title: Standard Contractual Clauses addendum
+    url: https://ifs-p-001.sitecorecontenthub.cloud/api/public/content/ifs_standard_contractual_clauses_addendum.pdf-2ffb22?v=27cd8921
+availability_claim: 99.99% cloud production service availability (rolling 90-day average)
+vulnerability_disclosure:
+  published: false
+  note: >-
+    No coordinated vulnerability disclosure policy, security.txt, or bug bounty program was
+    found. /.well-known/security.txt 404s on every IFS host probed (see
+    well-known/ifs-well-known.yml) and the Trust Center describes internal testing and
+    penetration testing but gives no external reporting address or safe-harbour statement.
+    The site footer's "Report a Concern" link is a general ethics/compliance channel, not a
+    security disclosure channel. No Security pointer is emitted.

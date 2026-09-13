@@ -1,0 +1,131 @@
+generated: '2026-09-13'
+method: searched
+source: https://docs.ifs.com/policy/APIUsageCloud.pdf + https://docs.ifs.com/techdocs/26r1/040_tailoring/300_extensibility/020_api_explorer/ + https://docs.ifs.com/techdocs/26r1/030_administration/010_security/040_iam_settings/035_iam_clients/020_authenticate_external_integration/300_client_credential_flow/ + https://docs.ifs.com/techdocs/26r1/030_administration/030_integration/350_ifs_cloud_interoperability/ + https://www.ifs.com/en/about/trust-center
+note: >-
+  Every entry below is evidenced by an IFS-published page or PDF that was fetched. Nothing
+  here is inferred from a spec in this repository.
+conformance:
+- id: odata-v4
+  name: OData 4.0 (OASIS)
+  conforms: true
+  domain_standard: true
+  evidence: >-
+    "oData APIs (projections) — oData v4 endpoint exposing entity sets and actions" and
+    "oData APIs (entities) — oData v4 endpoint exposing a single entity set with CRUD
+    actions", API Usage Policy for IFS Cloud, section "API Types and Access".
+  evidence_url: https://docs.ifs.com/policy/APIUsageCloud.pdf
+  corroboration: >-
+    IFS's own Script-A-Rest sample response carries `@odata.context`,
+    `@odata.etag` and a `$metadata` service-document URL —
+    https://docs.ifs.com/techdocs/26r1/060_development/050_development_tools/150_script_a_rest/
+- id: openapi
+  name: OpenAPI Specification (v3 and v2)
+  conforms: true
+  evidence: >-
+    All three API classes (Premium, Standard, StandardEntity) are described as "Visible in
+    API explorer. Technical specifications (OpenAPI v3, v2) and technical documentation
+    provided." The API Explorer page states developers can look up "OpenAPI v2, OpenAPI v3,
+    Odata specifications and IFS REST API documentation" per projection.
+  evidence_url: https://docs.ifs.com/techdocs/26r1/040_tailoring/300_extensibility/020_api_explorer/
+  caveat: >-
+    The specs are generated per projection from inside a customer's own IFS Cloud
+    environment. There is no anonymously reachable OpenAPI document for IFS Cloud.
+- id: oauth2
+  name: OAuth 2.0
+  conforms: true
+  evidence: >-
+    IFS IAM acts as the OAuth2 authorization server. IFS documents authorization code,
+    authorization code with PKCE, client credentials and resource owner password credentials
+    flows for external integrations.
+  evidence_url: https://docs.ifs.com/techdocs/26r1/030_administration/010_security/040_iam_settings/035_iam_clients/020_authenticate_external_integration/
+- id: oidc
+  name: OpenID Connect
+  conforms: true
+  evidence: >-
+    Token endpoint is an OpenID Connect protocol endpoint
+    (POST https://<SYSTEM_URL>/auth/realms/<NAMESPACE>/protocol/openid-connect/token), the
+    request scope is "openid microprofile-jwt", and the token response returns
+    access_token, refresh_token, id_token, token_type Bearer and session_state.
+  evidence_url: https://docs.ifs.com/techdocs/26r1/030_administration/010_security/040_iam_settings/035_iam_clients/020_authenticate_external_integration/300_client_credential_flow/
+- id: jwt-microprofile
+  name: MicroProfile JWT (Eclipse MicroProfile JWT RBAC)
+  conforms: true
+  evidence: 'Required token scope for external integration clients is "openid microprofile-jwt".'
+  evidence_url: https://docs.ifs.com/techdocs/26r1/030_administration/010_security/040_iam_settings/035_iam_clients/020_authenticate_external_integration/300_client_credential_flow/
+- id: cloudevents
+  name: CloudEvents (CNCF)
+  conforms: true
+  domain_standard: true
+  evidence: >-
+    "With IFS Cloud Interoperability, IFS Cloud integrates seamlessly with the IFS.ai
+    platform using standardized CloudEvents and asynchronous messaging." The
+    CloudEventReceiver (inbound) and CloudEventSender (outbound) services transform queue
+    messages into CloudEvent structures.
+  evidence_url: https://docs.ifs.com/techdocs/26r1/030_administration/030_integration/350_ifs_cloud_interoperability/
+  caveat: >-
+    Documented for the IFS Cloud <-> IFS.ai path. No CloudEvents schema registry or event
+    type catalog is published anonymously.
+- id: rfc9457
+  name: RFC 9457 Problem Details for HTTP APIs
+  conforms: false
+  evidence: >-
+    No application/problem+json error envelope is documented. IFS Cloud errors follow the
+    OData error shape; no published error reference was found on an anonymous surface.
+- id: pagination
+  name: Pagination
+  conforms: true
+  evidence: >-
+    OData system query options are used for paging ($top / $skip), as part of the OData v4
+    conformance above. See conventions/ifs-conventions.yml.
+  evidence_url: https://docs.ifs.com/policy/APIUsageCloud.pdf
+- id: idempotency
+  name: Idempotency keys
+  conforms: false
+  evidence: >-
+    No Idempotency-Key header or equivalent replay-protection mechanism is documented for
+    IFS Cloud OData APIs. OData ETag / If-Match optimistic concurrency is present and is a
+    different guarantee.
+- id: scim
+  name: SCIM
+  conforms: false
+  evidence: No SCIM schema URN or /scim/v2 surface documented for IFS Cloud.
+- id: fhir
+  name: FHIR
+  conforms: false
+  evidence: Not applicable to this market (enterprise ERP/EAM/FSM).
+compliance:
+  note: >-
+    Certifications below are published on the IFS Trust Center and were read from that page.
+    See security/ifs-trust-center.yml for the certificate documents.
+  certifications:
+  - id: iso-27001
+    name: ISO/IEC 27001 Information Security Management
+    status: certified
+    detail: IFS holds ISO/IEC 27001:2013 certification for IFS Cloud and IFS Success services; a 2022 Statement of Applicability and a certificate valid to 2026-10-17 are published.
+  - id: soc-1-type-ii
+    name: SOC 1 Type II (SSAE18 / ISAE 3402)
+    status: reported
+  - id: soc-2-type-ii
+    name: SOC 2 Type II (AICPA / ISAE 3000)
+    status: reported
+    detail: Trust services criteria for security, availability, confidentiality and privacy, for IFS Cloud and IFS Success.
+  - id: iso-9001
+    name: ISO 9001
+    status: certified
+    detail: UK certificate published (2023).
+  - id: tickit-plus
+    name: TickIT Plus
+    status: certified
+    detail: UK certificate published (2023).
+  - id: nist-800-171
+    name: NIST SP 800-171
+    status: aligned
+    detail: Named as one of the frameworks IFS uses to build and maintain its ISMS. Alignment, not certification.
+  - id: gdpr
+    name: GDPR
+    status: program
+    detail: Data Processing Addendum, sub-processor list, Standard Contractual Clauses addendum and NIS2 addendum are published on https://www.ifs.com/en/legal.
+  - id: gsa-schedule
+    name: US GSA Schedule
+    status: listed
+  evidence_url: https://www.ifs.com/en/about/trust-center

@@ -1,0 +1,228 @@
+generated: '2026-09-13'
+method: probed
+source: live HTTPS probes of every host this record knows (registrable domain, www, API baseURL host, docs host, developer-portal host, community host, blog host)
+note: >-
+  Nothing was served. Every named /.well-known/ path and /llms.txt 404s, 503s or does not
+  resolve. developer.ifs.com answers HTTP 200 for EVERY path because it is an Angular
+  single-page application with a catch-all route — the body is the portal's index.html
+  shell, not a discovery document, so those rows are recorded as misses. No WellKnown
+  and no SecurityTxt pointer is emitted; this file documents an absence.
+  www.ifs.com/robots.txt carries "Disallow: /llms.txt" but https://www.ifs.com/llms.txt
+  itself returns 404 — the rule guards a file that is not published.
+hosts:
+- host: ifs.com
+  note: 307 redirect to www.ifs.com for every path; see the www.ifs.com rows
+  documents:
+  - path: /.well-known/security.txt
+    status: 307
+    file: null
+  - path: /.well-known/openid-configuration
+    status: 307
+    file: null
+  - path: /.well-known/oauth-authorization-server
+    status: 307
+    file: null
+  - path: /.well-known/api-catalog
+    status: 307
+    file: null
+  - path: /.well-known/ai-plugin.json
+    status: 307
+    file: null
+- host: www.ifs.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+    file: null
+  - path: /.well-known/openid-configuration
+    status: 404
+    file: null
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+    file: null
+  - path: /.well-known/api-catalog
+    status: 404
+    file: null
+  - path: /.well-known/ai-plugin.json
+    status: 404
+    file: null
+  - path: /.well-known/agent-card.json
+    status: 404
+    file: null
+  - path: /.well-known/agent.json
+    status: 404
+    file: null
+  - path: /llms.txt
+    status: 404
+    file: null
+- host: api.ifs.com
+  note: >-
+    Resolves (193.41.170.171, the same address as build.ifs.com) but returns
+    "Http/1.1 Service Unavailable" for every path including /. It is the baseURL carried in
+    apis.yml but it is not a host IFS documents anywhere as an API endpoint.
+  documents:
+  - path: /.well-known/security.txt
+    status: 503
+    file: null
+  - path: /.well-known/openid-configuration
+    status: 503
+    file: null
+  - path: /.well-known/oauth-authorization-server
+    status: 503
+    file: null
+  - path: /.well-known/api-catalog
+    status: 503
+    file: null
+  - path: /.well-known/ai-plugin.json
+    status: 503
+    file: null
+  - path: /.well-known/agent-card.json
+    status: 503
+    file: null
+  - path: /.well-known/agent.json
+    status: 503
+    file: null
+  - path: /llms.txt
+    status: 503
+    file: null
+- host: docs.ifs.com
+  note: >-
+    Technical documentation (MkDocs Material). Serves a JS browser-verification challenge to
+    a default crawler User-Agent and 403s a bare curl, but answers normally to an ordinary
+    crawler UA; there is no robots.txt (404), so nothing is disallowed. All /.well-known/
+    paths genuinely 404.
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+    file: null
+  - path: /.well-known/openid-configuration
+    status: 404
+    file: null
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+    file: null
+  - path: /.well-known/api-catalog
+    status: 404
+    file: null
+  - path: /.well-known/ai-plugin.json
+    status: 404
+    file: null
+  - path: /.well-known/agent-card.json
+    status: 404
+    file: null
+  - path: /.well-known/agent.json
+    status: 404
+    file: null
+  - path: /llms.txt
+    status: 404
+    file: null
+- host: developer.ifs.com
+  note: >-
+    SPA catch-all. Every path below returned HTTP 200 with the identical 1,540-byte
+    index.html shell ("IFS Developer Portal"). NOT documents — recorded as misses.
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    file: null
+    body: html-spa-shell
+    document: false
+  - path: /.well-known/openid-configuration
+    status: 200
+    file: null
+    body: html-spa-shell
+    document: false
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    file: null
+    body: html-spa-shell
+    document: false
+  - path: /.well-known/api-catalog
+    status: 200
+    file: null
+    body: html-spa-shell
+    document: false
+  - path: /.well-known/ai-plugin.json
+    status: 200
+    file: null
+    body: html-spa-shell
+    document: false
+  - path: /.well-known/agent-card.json
+    status: 200
+    file: null
+    body: html-spa-shell
+    document: false
+  - path: /.well-known/agent.json
+    status: 200
+    file: null
+    body: html-spa-shell
+    document: false
+  - path: /llms.txt
+    status: 200
+    file: null
+    body: html-spa-shell
+    document: false
+- host: community.ifs.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+    file: null
+  - path: /.well-known/openid-configuration
+    status: 404
+    file: null
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+    file: null
+  - path: /.well-known/api-catalog
+    status: 404
+    file: null
+  - path: /.well-known/ai-plugin.json
+    status: 404
+    file: null
+  - path: /.well-known/agent-card.json
+    status: 404
+    file: null
+  - path: /.well-known/agent.json
+    status: 404
+    file: null
+  - path: /llms.txt
+    status: 404
+    file: null
+- host: blog.ifs.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+    file: null
+  - path: /.well-known/openid-configuration
+    status: 404
+    file: null
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+    file: null
+  - path: /.well-known/api-catalog
+    status: 404
+    file: null
+  - path: /.well-known/ai-plugin.json
+    status: 404
+    file: null
+  - path: /.well-known/agent-card.json
+    status: 404
+    file: null
+  - path: /.well-known/agent.json
+    status: 404
+    file: null
+  - path: /llms.txt
+    status: 404
+    file: null
+- host: login.ifs.cloud
+  note: >-
+    Carried as the OAuth authorizationUrl/tokenUrl host by the pre-existing derived
+    authentication and scopes artifacts. It does not resolve in DNS (NXDOMAIN) — see
+    authentication/ifs-authentication.yml for the endpoint shape IFS actually documents.
+  documents:
+  - path: /.well-known/openid-configuration
+    status: 0
+    file: null
+    error: dns-nxdomain
+summary:
+  hosts_probed: 8
+  documents_served: 0
+  spa_false_positives: 8

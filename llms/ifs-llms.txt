@@ -1,0 +1,103 @@
+# IFS
+
+> IFS is a global enterprise software company (HQ Linköping, Sweden) providing cloud ERP,
+> enterprise asset management (EAM), field service management (FSM) and enterprise service
+> management (ESM) on the IFS Cloud platform, for manufacturing, energy, aerospace, defense
+> and service industries.
+>
+> This file is an independent, third-party profile written by API Evangelist
+> (https://apievangelist.com). It is NOT published by IFS. Everything in it was read from
+> IFS's own public pages on 2026-09-13; each claim names the page it came from.
+> generated: 2026-09-13 · method: generated · source: apis.yml + this repository's artifacts
+
+## What the API actually is
+
+IFS Cloud APIs are **OData v4 projection services**, not a public SaaS API. They run inside
+each customer's own IFS Cloud environment. There is no shared IFS-operated API host, no
+public developer signup that yields API credentials, and no anonymously reachable OpenAPI
+document.
+
+- Endpoint shape: `https://<system-url>/main/ifsapplications/projection/v1/<Projection>.svc/<EntitySet>`
+- Methods: GET, POST, PUT, PATCH, DELETE
+- Query options: `$filter`, `$select`, `$orderby`, `$top`, `$skip`, `$expand`
+- Metadata: `<Projection>.svc/$metadata`
+- Per-projection **OpenAPI v3 and v2** specs are generated and browsable from the in-product
+  **API Explorer** — authenticated, tenant-local.
+- Auth: OAuth 2.0 / OpenID Connect via IFS IAM.
+  Token endpoint `https://<SYSTEM_URL>/auth/realms/<NAMESPACE>/protocol/openid-connect/token`,
+  scope `openid microprofile-jwt`, Bearer JWT. Basic auth exists on the endpoints only for
+  upgrade convenience and is explicitly not for integrations.
+- Authorization is by **permission sets and projection grants**, not OAuth scopes.
+
+## API classes (IFS's own tiering)
+
+- **Premium** — comprehensive docs, compatibility maintained across releases, early warning
+  and migration guidance, old and new versions considered in parallel for at least one release.
+- **Standard** — specs and docs provided; a list of breaking changes accompanies service and
+  release updates. Standard APIs are *atomic* — a structured inbound message must be split
+  into several calls by middleware.
+- **StandardEntity** — requires administrator activation; only for IFS Cloud configuration
+  tools and trusted system-to-system integration.
+- Any class can additionally be marked **Deprecated**.
+
+## Developer surface
+
+- [IFS Developer Portal](https://developer.ifs.com/): free first-party developer tools, a
+  dated news feed, getting-started and FAQ stories. No login required.
+- [IFS Technical Documentation](https://docs.ifs.com/): per-release (24R1 … 26R1) technical
+  docs, including integration, security and development-tool reference.
+- [IFS Community](https://community.ifs.com/): support and Q&A; also where the per-release
+  deprecation log is published (account required).
+- [IFS Blog](https://blog.ifs.com/)
+
+## Policies that matter to an integrator
+
+- [API Usage Policy for IFS Cloud](https://docs.ifs.com/policy/APIUsageCloud.pdf) — API types,
+  access rules, API classes. Note: support for *how* to use an API is not covered by most IFS
+  support agreements.
+- [Deprecation and Removal Policy](https://docs.ifs.com/policy/DeprecationPolicy/) — a feature
+  in release R stays available and functional for **24 months** from that release's GA; a
+  feature deprecated in R may be removed in R+1 or later.
+- [API breaking-change reports](https://developer.ifs.com/stories/api_diff) — per-release
+  .xlsm workbooks (26R1, 25R2, 25R1, 24R2) plus release-to-release diffs.
+- [IFS Cloud Services SLA](https://www.ifs.com/en/legal) — 99.5% availability target per
+  production environment, with service credits and a termination right.
+- [Trust Center](https://www.ifs.com/en/about/trust-center) — ISO/IEC 27001, SOC 1 Type II,
+  SOC 2 Type II, ISO 9001, TickIT Plus, NIST SP 800-171 alignment, GDPR.
+
+## Events
+
+No AsyncAPI is published. IFS documents two asynchronous surfaces:
+outbound messages/events via **IFS Connect** (customer-configured routing to HTTP, REST, mail,
+file, FTP/SFTP), and **IFS Cloud Interoperability**, which moves **CloudEvents** between IFS
+Cloud and the IFS.ai platform over Oracle Advanced Queues.
+
+## Tooling
+
+- **Script-A-Rest** (v3.0.0) — first-party CLI for the IFS Cloud OData APIs; also an API-level
+  integration test runner. `ScriptARest.exe ServerUrl=… FileToRead=…`
+- **IFS Developer Studio** (18) — model-driven server-side development (MARBLE, PL/SQL, Java)
+- **IFS Cloud Development Kit** — VS Code extension, early preview (v0.0.9)
+- No IFS-published client SDK exists on npm, PyPI, NuGet, Maven Central or any other registry.
+
+## What IFS does NOT publish
+
+- Any anonymously reachable OpenAPI, AsyncAPI or GraphQL document
+- Any `/.well-known/` discovery document, on any IFS host
+- An llms.txt (www.ifs.com/robots.txt disallows `/llms.txt`, but that path returns 404)
+- An A2A agent card, or a first-party MCP server
+- A public status page, a public pricing page, a security.txt, or a vulnerability disclosure policy
+
+## Repository artifacts
+
+- authentication/ifs-authentication.yml — the OIDC/IAM profile
+- scopes/ifs-scopes.yml — why IFS has almost no scopes
+- conventions/ifs-conventions.yml — OData semantics, concurrency, and the idempotency gap
+- lifecycle/ifs-lifecycle.yml — API classes, deprecation, SLA
+- conformance/ifs-conformance.yml — OData v4, OpenAPI, OAuth2/OIDC, CloudEvents, certifications
+- asyncapi/ifs-events.yml — the event and outbound-message surface
+- changelog/ifs-changelog.yml — dated developer-tool releases and the release scheme
+- cli/ifs-cli.yml — Script-A-Rest
+- packages/ifs-packages.yml — first-party tools; zero registry SDKs
+- security/ifs-domain-security.yml, security/ifs-trust-center.yml
+- well-known/ifs-well-known.yml — a recorded absence across eight hosts

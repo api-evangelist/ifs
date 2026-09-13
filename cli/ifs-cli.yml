@@ -1,0 +1,90 @@
+generated: '2026-09-13'
+method: searched
+source: https://docs.ifs.com/techdocs/26r1/060_development/050_development_tools/150_script_a_rest/
+name: IFS Script-A-Rest
+version: 3.0.0
+official: true
+description: >-
+  IFS Script-A-Rest is IFS's first-party command-line client for the IFS Cloud RESTful
+  (OData) APIs. It executes markdown script files whose fenced code blocks contain OData
+  commands, and it is also used as an API-level integration test runner — assertions, test
+  cases and test suites, with XML result files and per-call timings. Built on .NET Core 3.1
+  and runs on Windows and Linux.
+runtime: .NET Core 3.1
+platforms:
+- windows
+- linux
+install:
+- method: direct-download
+  url: https://ifsdevtools.blob.core.windows.net/ifs-dev-tools/IFSScriptARest/Script-A-Rest_latest.zip
+  steps:
+  - Download and unpack the Script-A-Rest binaries and samples
+  - Run _install.cmd to register the Script-A-Rest context menu
+  - Edit _test_a_rest.cmd (or appsettings.config) with the server and credentials
+binary: ScriptARest.exe
+invocation: >-
+  ScriptARest.exe ServerUrl=https://<ifs-cloud-environment> Username=<user> Password=<pass>
+  FileToRead=<script>.md ResultFilePath=<dir>
+arguments:
+- name: ServerUrl
+  description: Base URL of the IFS Cloud environment to call
+- name: Username
+  description: IFS Cloud user (basic logon path)
+- name: Password
+  description: Password for the IFS Cloud user
+- name: Token
+  description: >-
+    Externally obtained access token. When Token is supplied Script-A-Rest performs no
+    logon procedure of its own.
+- name: client_secret
+  description: Client secret, settable in appsettings.config
+- name: FileToRead
+  description: Markdown script file to execute. Omit it to enter interactive mode.
+- name: ResultFilePath
+  description: Directory for test-result XML and performance JSON output
+- name: PerfDetails
+  description: Set false to suppress the performance JSON files
+- name: LogLevel
+  description: 'normal (default) | info | diag | debug'
+commands:
+  note: >-
+    Script commands are OData verbs written inside triple-backtick blocks in the markdown
+    script, addressed at a projection service and entity set, e.g.
+    `Create DockCodesHandling.svc/PurchaseDockCodes`.
+  surface:
+  - Create / Post — create an entity in a projection entity set
+  - Get — read data from an OData entity set
+  - modify / update commands against an entity set
+  - Call other scripts, to compose suites from smaller units
+  - Assert values; ignore errors; organize into test cases and test suites
+  - Evaluate expressions using C# syntax
+  - Use parameters in both URLs and body payloads
+modes:
+- name: file
+  description: Executes a markdown script passed as FileToRead
+- name: interactive
+  description: >-
+    Started without FileToRead, behaves like an interactive shell (IFS compares it to
+    Oracle SQL*Plus)
+- name: context-menu
+  description: Windows Explorer context-menu entry registered by _install.cmd
+config_file:
+  name: appsettings.config
+  location: the folder where Script-A-Rest is installed
+  precedence: command-line arguments override values in the config file
+  keys:
+  - LogLevel
+  - ServerUrl
+  - Username
+  - Password
+  - Token
+  - client_secret
+  - FileToRead
+  - ResultFilePath
+docs:
+- title: IFS Script-A-Rest
+  url: https://docs.ifs.com/techdocs/26r1/060_development/050_development_tools/150_script_a_rest/
+- title: Change Log
+  url: https://developer.ifs.com/assets/devtools/IFSScriptARest/ChangeLog.htm
+- title: Download (IFS Developer Portal)
+  url: https://developer.ifs.com/tools/scriptarest
