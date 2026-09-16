@@ -5,11 +5,11 @@
       "source": "https://blog.ifs.com/feed/",
       "feed_url": "https://blog.ifs.com/feed/",
       "title": "",
-      "saved": 7,
+      "saved": 0,
       "method": "feed"
     }
   ],
-  "fetched": "2026-09-13T12:41:53Z",
+  "fetched": "2026-09-13T13:00:00Z",
   "post_count": 44,
   "feed_nature": "vendor-blog",
   "feed_nature_basis": "blog_subdomain",
