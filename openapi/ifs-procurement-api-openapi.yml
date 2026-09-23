@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: IFS Cloud ERP Finance Procurement API
+  title: IFS Cloud ERP Procurement API
   description: IFS Cloud ERP REST API providing integration with financial management, procurement, manufacturing, project management, and supply chain modules. IFS Cloud exposes OData-compatible REST endpoints for accessing business entities across energy, manufacturing, aerospace, and defense industry verticals.
   version: 22.1.0
   contact:
@@ -90,6 +90,38 @@ paths:
           description: Purchase order not found
 components:
   schemas:
+    PurchaseOrderLine:
+      type: object
+      properties:
+        LineNo:
+          type: integer
+        PartNo:
+          type: string
+        Description:
+          type: string
+        OrderedQty:
+          type: number
+        ReceivedQty:
+          type: number
+        RemainingQty:
+          type: number
+        BuyUnitPrice:
+          type: number
+          format: double
+        LineTotal:
+          type: number
+          format: double
+    PurchaseOrderCollection:
+      type: object
+      properties:
+        '@odata.context':
+          type: string
+        '@odata.count':
+          type: integer
+        value:
+          type: array
+          items:
+            $ref: '#/components/schemas/PurchaseOrder'
     PurchaseOrder:
       type: object
       properties:
@@ -124,38 +156,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PurchaseOrderLine'
-    PurchaseOrderCollection:
-      type: object
-      properties:
-        '@odata.context':
-          type: string
-        '@odata.count':
-          type: integer
-        value:
-          type: array
-          items:
-            $ref: '#/components/schemas/PurchaseOrder'
-    PurchaseOrderLine:
-      type: object
-      properties:
-        LineNo:
-          type: integer
-        PartNo:
-          type: string
-        Description:
-          type: string
-        OrderedQty:
-          type: number
-        ReceivedQty:
-          type: number
-        RemainingQty:
-          type: number
-        BuyUnitPrice:
-          type: number
-          format: double
-        LineTotal:
-          type: number
-          format: double
   securitySchemes:
     OAuth2:
       type: oauth2

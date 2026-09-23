@@ -1,10 +1,7 @@
 {
   "provider": "ifs",
   "sources": [
-    "ifs-finance-api-openapi.yml",
-    "ifs-inventory-api-openapi.yml",
-    "ifs-procurement-api-openapi.yml",
-    "ifs-work-orders-api-openapi.yml"
+    "_original/ifs-cloud-erp-openapi.yml"
   ],
   "outputs": [
     "ifs-finance-api-openapi.yml",
@@ -16,11 +13,14 @@
   "errors": [],
   "warnings": [],
   "notes": [
-    "ifs-finance-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "ifs-inventory-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "ifs-procurement-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "ifs-work-orders-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "ifs-cloud-erp-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
     "apis.yml register: already-registered"
   ],
-  "skipped": []
+  "skipped": [
+    "ifs-finance-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ifs-inventory-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ifs-procurement-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ifs-work-orders-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

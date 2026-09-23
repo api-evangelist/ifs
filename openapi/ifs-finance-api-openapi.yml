@@ -105,40 +105,6 @@ paths:
           description: Voucher not found
 components:
   schemas:
-    VoucherCollection:
-      type: object
-      properties:
-        '@odata.context':
-          type: string
-        '@odata.count':
-          type: integer
-        value:
-          type: array
-          items:
-            $ref: '#/components/schemas/Voucher'
-    VoucherRow:
-      type: object
-      properties:
-        RowNo:
-          type: integer
-        Account:
-          type: string
-        CostCentre:
-          type: string
-        ProjectId:
-          type: string
-        Quantity:
-          type: number
-        Amount:
-          type: number
-          format: double
-        CurrencyAmount:
-          type: number
-          format: double
-        Text:
-          type: string
-        AccountingPeriod:
-          type: integer
     Voucher:
       type: object
       properties:
@@ -172,6 +138,40 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/VoucherRow'
+    VoucherRow:
+      type: object
+      properties:
+        RowNo:
+          type: integer
+        Account:
+          type: string
+        CostCentre:
+          type: string
+        ProjectId:
+          type: string
+        Quantity:
+          type: number
+        Amount:
+          type: number
+          format: double
+        CurrencyAmount:
+          type: number
+          format: double
+        Text:
+          type: string
+        AccountingPeriod:
+          type: integer
+    VoucherCollection:
+      type: object
+      properties:
+        '@odata.context':
+          type: string
+        '@odata.count':
+          type: integer
+        value:
+          type: array
+          items:
+            $ref: '#/components/schemas/Voucher'
   securitySchemes:
     OAuth2:
       type: oauth2

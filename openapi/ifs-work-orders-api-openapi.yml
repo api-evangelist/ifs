@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: IFS Cloud ERP Finance Work Orders API
+  title: IFS Cloud ERP Work Orders API
   description: IFS Cloud ERP REST API providing integration with financial management, procurement, manufacturing, project management, and supply chain modules. IFS Cloud exposes OData-compatible REST endpoints for accessing business entities across energy, manufacturing, aerospace, and defense industry verticals.
   version: 22.1.0
   contact:
@@ -77,17 +77,6 @@ paths:
           description: Work order not found
 components:
   schemas:
-    WorkOrderCollection:
-      type: object
-      properties:
-        '@odata.context':
-          type: string
-        '@odata.count':
-          type: integer
-        value:
-          type: array
-          items:
-            $ref: '#/components/schemas/WorkOrder'
     WorkOrder:
       type: object
       properties:
@@ -136,6 +125,17 @@ components:
           description: Maintenance organization code
         EmployeeId:
           type: string
+    WorkOrderCollection:
+      type: object
+      properties:
+        '@odata.context':
+          type: string
+        '@odata.count':
+          type: integer
+        value:
+          type: array
+          items:
+            $ref: '#/components/schemas/WorkOrder'
   securitySchemes:
     OAuth2:
       type: oauth2

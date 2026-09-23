@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: IFS Cloud ERP Finance Inventory API
+  title: IFS Cloud ERP Inventory API
   description: IFS Cloud ERP REST API providing integration with financial management, procurement, manufacturing, project management, and supply chain modules. IFS Cloud exposes OData-compatible REST endpoints for accessing business entities across energy, manufacturing, aerospace, and defense industry verticals.
   version: 22.1.0
   contact:
