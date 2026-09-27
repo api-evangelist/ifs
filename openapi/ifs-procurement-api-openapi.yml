@@ -90,27 +90,6 @@ paths:
           description: Purchase order not found
 components:
   schemas:
-    PurchaseOrderLine:
-      type: object
-      properties:
-        LineNo:
-          type: integer
-        PartNo:
-          type: string
-        Description:
-          type: string
-        OrderedQty:
-          type: number
-        ReceivedQty:
-          type: number
-        RemainingQty:
-          type: number
-        BuyUnitPrice:
-          type: number
-          format: double
-        LineTotal:
-          type: number
-          format: double
     PurchaseOrderCollection:
       type: object
       properties:
@@ -156,6 +135,27 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PurchaseOrderLine'
+    PurchaseOrderLine:
+      type: object
+      properties:
+        LineNo:
+          type: integer
+        PartNo:
+          type: string
+        Description:
+          type: string
+        OrderedQty:
+          type: number
+        ReceivedQty:
+          type: number
+        RemainingQty:
+          type: number
+        BuyUnitPrice:
+          type: number
+          format: double
+        LineTotal:
+          type: number
+          format: double
   securitySchemes:
     OAuth2:
       type: oauth2

@@ -105,39 +105,6 @@ paths:
           description: Voucher not found
 components:
   schemas:
-    Voucher:
-      type: object
-      properties:
-        Company:
-          type: string
-          description: Company code
-        AccountingYear:
-          type: string
-        VoucherType:
-          type: string
-        VoucherNo:
-          type: integer
-        VoucherDate:
-          type: string
-          format: date
-        Description:
-          type: string
-        Function:
-          type: string
-        Amount:
-          type: number
-          format: double
-        CurrencyCode:
-          type: string
-        Objstate:
-          type: string
-          description: Voucher state (e.g., Preliminary, Approved, Confirmed)
-        UserGroup:
-          type: string
-        VoucherRows:
-          type: array
-          items:
-            $ref: '#/components/schemas/VoucherRow'
     VoucherRow:
       type: object
       properties:
@@ -172,6 +139,39 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Voucher'
+    Voucher:
+      type: object
+      properties:
+        Company:
+          type: string
+          description: Company code
+        AccountingYear:
+          type: string
+        VoucherType:
+          type: string
+        VoucherNo:
+          type: integer
+        VoucherDate:
+          type: string
+          format: date
+        Description:
+          type: string
+        Function:
+          type: string
+        Amount:
+          type: number
+          format: double
+        CurrencyCode:
+          type: string
+        Objstate:
+          type: string
+          description: Voucher state (e.g., Preliminary, Approved, Confirmed)
+        UserGroup:
+          type: string
+        VoucherRows:
+          type: array
+          items:
+            $ref: '#/components/schemas/VoucherRow'
   securitySchemes:
     OAuth2:
       type: oauth2

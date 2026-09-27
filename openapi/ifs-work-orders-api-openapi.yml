@@ -77,6 +77,17 @@ paths:
           description: Work order not found
 components:
   schemas:
+    WorkOrderCollection:
+      type: object
+      properties:
+        '@odata.context':
+          type: string
+        '@odata.count':
+          type: integer
+        value:
+          type: array
+          items:
+            $ref: '#/components/schemas/WorkOrder'
     WorkOrder:
       type: object
       properties:
@@ -125,17 +136,6 @@ components:
           description: Maintenance organization code
         EmployeeId:
           type: string
-    WorkOrderCollection:
-      type: object
-      properties:
-        '@odata.context':
-          type: string
-        '@odata.count':
-          type: integer
-        value:
-          type: array
-          items:
-            $ref: '#/components/schemas/WorkOrder'
   securitySchemes:
     OAuth2:
       type: oauth2
