@@ -53,6 +53,17 @@ paths:
                 $ref: '#/components/schemas/PartCollection'
 components:
   schemas:
+    PartCollection:
+      type: object
+      properties:
+        '@odata.context':
+          type: string
+        '@odata.count':
+          type: integer
+        value:
+          type: array
+          items:
+            $ref: '#/components/schemas/Part'
     Part:
       type: object
       properties:
@@ -75,17 +86,6 @@ components:
           type: number
         GrossWeight:
           type: number
-    PartCollection:
-      type: object
-      properties:
-        '@odata.context':
-          type: string
-        '@odata.count':
-          type: integer
-        value:
-          type: array
-          items:
-            $ref: '#/components/schemas/Part'
   securitySchemes:
     OAuth2:
       type: oauth2
