@@ -111,17 +111,6 @@ components:
         LineTotal:
           type: number
           format: double
-    PurchaseOrderCollection:
-      type: object
-      properties:
-        '@odata.context':
-          type: string
-        '@odata.count':
-          type: integer
-        value:
-          type: array
-          items:
-            $ref: '#/components/schemas/PurchaseOrder'
     PurchaseOrder:
       type: object
       properties:
@@ -156,6 +145,17 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PurchaseOrderLine'
+    PurchaseOrderCollection:
+      type: object
+      properties:
+        '@odata.context':
+          type: string
+        '@odata.count':
+          type: integer
+        value:
+          type: array
+          items:
+            $ref: '#/components/schemas/PurchaseOrder'
   securitySchemes:
     OAuth2:
       type: oauth2

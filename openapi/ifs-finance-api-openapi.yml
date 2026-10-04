@@ -138,17 +138,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/VoucherRow'
-    VoucherCollection:
-      type: object
-      properties:
-        '@odata.context':
-          type: string
-        '@odata.count':
-          type: integer
-        value:
-          type: array
-          items:
-            $ref: '#/components/schemas/Voucher'
     VoucherRow:
       type: object
       properties:
@@ -172,6 +161,17 @@ components:
           type: string
         AccountingPeriod:
           type: integer
+    VoucherCollection:
+      type: object
+      properties:
+        '@odata.context':
+          type: string
+        '@odata.count':
+          type: integer
+        value:
+          type: array
+          items:
+            $ref: '#/components/schemas/Voucher'
   securitySchemes:
     OAuth2:
       type: oauth2
