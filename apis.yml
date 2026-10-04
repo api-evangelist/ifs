@@ -190,6 +190,9 @@ apis:
     url: authentication/ifs-authentication.yml
   image: https://ifs-p-001.sitecorecontenthub.cloud/api/public/content/ifs-logo.png-e018c7?v=ec7c2a48
 common:
+- type: CapabilityMap
+  url: capabilities/ifs-capability-edges.yml
+  name: IFS Business Capability Map
 - type: AgenticAccess
   url: agentic-access/ifs-agentic-access.yml
 - type: DomainSecurity
