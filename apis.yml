@@ -190,6 +190,8 @@ apis:
     url: authentication/ifs-authentication.yml
   image: https://ifs-p-001.sitecorecontenthub.cloud/api/public/content/ifs-logo.png-e018c7?v=ec7c2a48
 common:
+- type: FinOps
+  url: finops/ifs-finops.yml
 - type: CapabilityMap
   url: capabilities/ifs-capability-edges.yml
   name: IFS Business Capability Map
