@@ -15,7 +15,7 @@ capability_model:
   attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
     CC BY 4.0
   notice: NOTICE
-edge_count: 2
+edge_count: 3
 edges:
 - tag: Procurement
   spec_file: ifs-procurement-api-openapi.yml
@@ -37,3 +37,13 @@ edges:
     VoucherRow'
   reason: Accounting vouchers with voucher rows, keyed by accounting year, voucher type and company, are
     general-ledger journal entries — General Ledger Management. Read-only access slightly limits certainty.
+- tag: Work Orders
+  spec_file: ifs-work-orders-api-openapi.yml
+  capability_id: BC-1010.10
+  capability_id_l1: BC-1010
+  capability_name: Work Order Management
+  confidence: 0.7
+  evidence: 'GET /WORK_ORDER_API listWorkOrders List work orders; schemas: WorkOrderCollection, WorkOrder'
+  reason: IFS Cloud ERP work order entities map to Work Order Management under Manufacturing Operations
+    Management; some ambiguity since IFS work orders may be maintenance work orders (BC-1030.50), hence
+    moderate confidence.
