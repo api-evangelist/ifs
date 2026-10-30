@@ -1,4 +1,4 @@
-# IFS (ifs)
+# IFS
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,107 +66,163 @@
 
 IFS is a global enterprise software company providing cloud ERP, enterprise asset management, field service management, and enterprise service management platforms. APIs enable integration with IFS Cloud across manufacturing, energy, aerospace, defense, and service industries. IFS is headquartered in Linköping, Sweden with operations in over 90 countries.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/ifs/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/ifs/refs/heads/main/apis.yml)
+**Areas:** ERP · Field Service Management · Asset Management · Manufacturing · Energy · Cloud · Sweden
 
-## Tags
+## IFS on APIs.io
 
-- ERP
-- Field Service
-- Asset Management
-- Manufacturing
-- Energy
-- Cloud
+Everything profiled for IFS is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/ifs/](https://apis.io/providers/ifs/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (7)
 
-- **Modified:** 2026-04-28
+- [IFS Field Service Management API](https://apis.io/apis/ifs/ifs-field-service-management-api/) — IFS Field Service Management APIs enable work order management, scheduling optimization, technician dispatch, parts inventory, and mobile workforce…
+- [IFS Enterprise Asset Management API](https://apis.io/apis/ifs/ifs-enterprise-asset-management-api/) — IFS Enterprise Asset Management APIs provide integration with asset lifecycle management, maintenance planning, work order execution, and predictive…
+- [IFS Enterprise Service Management API](https://apis.io/apis/ifs/ifs-enterprise-service-management-api/) — IFS Enterprise Service Management APIs enable IT service management, service catalog, incident management, and CMDB integration for enterprise IT and shared…
+- [IFS Finance API](https://apis.io/apis/ifs/ifs-finance-api/) — General ledger, vouchers, and financial entities
+- [IFS Inventory API](https://apis.io/apis/ifs/ifs-inventory-api/) — Parts and inventory management
+- [IFS Procurement API](https://apis.io/apis/ifs/ifs-procurement-api/) — Purchase orders and supplier management
+- [IFS Work Orders API](https://apis.io/apis/ifs/ifs-work-orders-api/) — Maintenance work orders and job management
 
-## APIs
+### Published properties
 
-### IFS Cloud ERP API
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-IFS Cloud ERP provides REST APIs for enterprise resource planning covering financials, procurement, manufacturing, project management, and supply chain for energy, manufacturing, aerospace, and defense industries.
+#### AsyncAPI (1)
 
-- **Human URL:** [https://www.ifs.com/](https://www.ifs.com/)
-- **Base URL:** `https://api.ifs.com`
+Event-driven and webhook contracts.
 
-#### Tags
+- [Ifs Events](https://apis.io/asyncapis/ifs/ifs-events/)
 
-- Cloud
-- ERP
-- Finance
-- Manufacturing
-- Supply Chain
+#### Agentic access (1)
 
-#### Properties
+Which operations an agent can call, which act, and which need a human in the loop.
 
-- [Documentation](https://www.ifs.com/)
-- [OpenAPI](openapi/ifs-cloud-erp-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/ifs-cloud-erp.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/ifs-cloud-erp.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Ifs Agentic Access](https://apis.io/agentic-access/ifs/ifs-agentic-access/)
 
-### IFS Field Service Management API
+#### JSON Schema (1)
 
-IFS Field Service Management APIs enable work order management, scheduling optimization, technician dispatch, parts inventory, and mobile workforce coordination for energy, manufacturing, and telecom field service operations.
+The data models the API reads and writes.
 
-- **Human URL:** [https://www.ifs.com/](https://www.ifs.com/)
-- **Base URL:** `https://api.ifs.com`
+- [IFS Work Order](https://apis.io/schemas/ifs/ifs-work-order/)
 
-#### Tags
+#### JSON-LD (1)
 
-- Asset Management
-- Field Service
-- Mobile
-- Scheduling
-- Work Order
+Linked-data contexts for the provider's vocabulary.
 
-#### Properties
+- [Ifs Context](https://apis.io/jsonld/ifs/ifs-context/)
 
-- [Documentation](https://www.ifs.com/)
-- [Postman Collection](collections/ifs-cloud-erp.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/ifs-cloud-erp.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Collections (5)
 
-### IFS Enterprise Asset Management API
+Postman and Open Collection request collections.
 
-IFS Enterprise Asset Management APIs provide integration with asset lifecycle management, maintenance planning, work order execution, and predictive maintenance workflows for industrial and infrastructure asset-intensive organizations.
+- [IFS Cloud ERP API](https://apis.io/collections/ifs/open-ifs-cloud-erp/)
+- [IFS Cloud ERP Finance API](https://apis.io/collections/ifs/open-ifs-finance-api/)
+- [IFS Cloud ERP Finance Inventory API](https://apis.io/collections/ifs/open-ifs-inventory-api/)
+- [IFS Cloud ERP Finance Procurement API](https://apis.io/collections/ifs/open-ifs-procurement-api/)
+- [IFS Cloud ERP Finance Work Orders API](https://apis.io/collections/ifs/open-ifs-work-orders-api/)
 
-- **Human URL:** [https://www.ifs.com/](https://www.ifs.com/)
-- **Base URL:** `https://api.ifs.com`
+#### Governance rules (1)
 
-#### Tags
+Spectral rulesets for the provider's contracts.
 
-- Asset Management
-- EAM
-- Energy
-- Maintenance
-- Manufacturing
+- [IFS — jsonschema rules](https://apis.io/rules/ifs/ifs-jsonschema-spectral-rules/)
 
-#### Properties
+#### Security (3)
 
-- [Documentation](https://www.ifs.com/)
-- [Postman Collection](collections/ifs-cloud-erp.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/ifs-cloud-erp.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Authentication, trust centre, and vulnerability disclosure.
 
-### IFS Enterprise Service Management API
+- [Ifs Authentication](https://apis.io/security/ifs/ifs-authentication/)
+- [Ifs Domain Security](https://apis.io/security/ifs/ifs-domain-security/)
+- [Ifs Trust Center](https://apis.io/security/ifs/ifs-trust-center/)
 
-IFS Enterprise Service Management APIs enable IT service management, service catalog, incident management, and CMDB integration for enterprise IT and shared service organizations using the IFS Cloud platform.
+#### OAuth scopes (1)
 
-- **Human URL:** [https://www.ifs.com/](https://www.ifs.com/)
-- **Base URL:** `https://api.ifs.com`
+The permissions the API asks for.
 
-#### Tags
+- [Ifs Scopes](https://apis.io/scopes/ifs/ifs-scopes/)
 
-- Cloud
-- Helpdesk
-- ITSM
-- Service Management
+#### Plans and pricing (1)
 
-#### Properties
+Published plans, tiers and prices.
 
-- [Documentation](https://www.ifs.com/)
-- [Postman Collection](collections/ifs-cloud-erp.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/ifs-cloud-erp.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Ifs Plans Pricing](https://apis.io/plans/ifs/ifs-plans-pricing/)
 
-## Common Properties
+#### Rate limits (1)
 
-- [LinkedIn](https://www.linkedin.com/company/ifs)
+Published request limits.
+
+- [Ifs Rate Limits](https://apis.io/rate-limits/ifs/ifs-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Ifs Finops](https://apis.io/finops/ifs/ifs-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.ifs.com/)
+- [Documentation](https://docs.ifs.com/)
+- [Getting started](https://docs.ifs.com/techdocs/26r1/040_tailoring/300_extensibility/010_get_started/)
+- [API reference](https://docs.ifs.com/techdocs/26r1/040_tailoring/300_extensibility/020_api_explorer/)
+- [Support](https://community.ifs.com/)
+- [Blog](https://blog.ifs.com/feed/)
+- [Trust centre](https://www.ifs.com/en/about/trust-center)
+- [Terms of service](https://www.ifs.com/en/legal)
+- [Privacy policy](https://www.ifs.com/en/legal/privacy)
+
+## API Evangelist rating
+
+**Kin Score 47.8** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 73.2 |
+| Contract quality | 68.3 |
+| Contract governance | 28.0 |
+| Operational transparency | 23.7 |
+| Developer ergonomics | 26.2 |
+| Access clarity | 36.8 |
+
+**Agent readiness 35.4** — agent-ready
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | na |
+| MCP Server | — |
+| Auth Clarity | negotiable (partial credit) |
+| Idempotency | na |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | yes |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | na |
+| Delegated Identity | documented (partial credit) |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 42.6** — Energy & Utilities
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/ifs/](https://apis.io/providers/ifs/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for IFS: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/ifs/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
