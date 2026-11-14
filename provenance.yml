@@ -5,6 +5,9 @@ artifacts:
   agentic-access/ifs-agentic-access.yml:
     method: generated
     evidence: declared in the artifact
+  ai-preferences/ifs-ai-preferences.yml:
+    method: harvested
+    evidence: declared in the artifact
   asyncapi/ifs-events.yml:
     method: searched
     evidence: declared in the artifact
@@ -12,6 +15,12 @@ artifacts:
     method: searched
     evidence: declared in the artifact
   capabilities/ifs-capability-edges.yml:
+    method: unknown
+    evidence: no authorship recorded
+  certification/observations-2026-11-11.jsonl:
+    method: unknown
+    evidence: no authorship recorded
+  certification/status.yml:
     method: unknown
     evidence: no authorship recorded
   changelog/ifs-changelog.yml:
@@ -50,11 +59,17 @@ artifacts:
   collections/ifs-work-orders-api.postman_collection.json:
     method: derived
     evidence: openapi/ifs-work-orders-api
+  compliance/ifs-compliance.yml:
+    method: harvested
+    evidence: declared in the artifact
   conformance/ifs-conformance.yml:
     method: searched
     evidence: declared in the artifact
   conventions/ifs-conventions.yml:
     method: searched
+    evidence: declared in the artifact
+  eligibility/ifs-eligibility.yml:
+    method: harvested
     evidence: declared in the artifact
   finops/ifs-finops.yml:
     method: derived
@@ -66,6 +81,9 @@ artifacts:
     method: unknown
     evidence: no authorship recorded
   heartbeat/2026-11-06.yml:
+    method: unknown
+    evidence: no authorship recorded
+  heartbeat/2026-11-13.yml:
     method: unknown
     evidence: no authorship recorded
   integrations/_index.yml:
@@ -83,7 +101,7 @@ artifacts:
   kin/checks-2026-10-23T222754.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
-  kin/checks-2026-11-02T082323.yml:
+  kin/checks-2026-11-06T143934.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
   kin/score-2026-09-23T000603.yml:
@@ -149,6 +167,9 @@ artifacts:
   kin/score-2026-11-02T082323.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-11-06T143934.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
   lifecycle/ifs-lifecycle.yml:
     method: searched
     evidence: declared in the artifact
@@ -177,6 +198,9 @@ artifacts:
   plans/ifs-plans-pricing.yml:
     method: searched
     evidence: declared in the artifact
+  privacy/ifs-privacy-policy.yml:
+    method: harvested
+    evidence: declared in the artifact
   rate-limits/ifs-rate-limits.yml:
     method: searched
     evidence: declared in the artifact
@@ -191,6 +215,9 @@ artifacts:
     evidence: no authorship recorded
   security/ifs-trust-center.yml:
     method: searched
+    evidence: declared in the artifact
+  terms/ifs-terms-of-service.yml:
+    method: harvested
     evidence: declared in the artifact
   well-known/ifs-well-known.yml:
     method: unknown
